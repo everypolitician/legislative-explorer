@@ -13,7 +13,7 @@ class Sparql
   def results
     bindings.map do |r|
       r.map do |k, v|
-        [ k, v[:type] == 'uri' && v[:value].include?('http://www.wikidata.org/entity/') ? v[:value].split('/').last : v[:value] ]
+        [k, v[:type] == 'uri' && v[:value].include?('http://www.wikidata.org/entity/') ? v[:value].split('/').last : v[:value]]
       end.to_h
     end
   end

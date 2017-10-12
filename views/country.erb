@@ -3,7 +3,8 @@
   <div class="container">
     <ul>
       <li>Legislature: <a href="/legislature/<%= @page.country.legislature.id %>"><%= @page.country.legislature.name %></a></li>
-      <li>Head of Government: <%= @page.country.head.name %> (<%= @page.country.office.name %>)</li>
+      <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= @page.country.head.id %>"><%= @page.country.head.name %></a> 
+          (<a href="https://www.wikidata.org/wiki/<%= @page.country.office.id %>"><%= @page.country.office.name %>)</a></li>
       <li>Cities:
         <ol>
           <% @page.country.cities.each do |city| %>
