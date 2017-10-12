@@ -1,0 +1,16 @@
+
+<div class="page-section">
+  <div class="container">
+    <ul>
+      <li>Legislature: <a href="/legislature/<%= @page.country.legislature.id %>"><%= @page.country.legislature.name %></a></li>
+      <li>Head of Government: <%= @page.country.head.name %> (<%= @page.country.office.name %>)</li>
+      <li>Cities:
+        <ol>
+          <% @page.country.cities.each do |city| %>
+            <li><a href="/city/<%= city.id %>"><%= city.name %></a></li>
+          <% end %>
+        </ol>
+      </li>
+    </ul>
+  </div>
+</div>

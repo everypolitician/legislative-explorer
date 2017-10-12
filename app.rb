@@ -19,6 +19,11 @@ get '/' do
   erb :homepage
 end
 
+get '/country/:qid' do |qid|
+  @page = Page::Country.new(id: qid)
+  erb :country
+end
+
 get '/*.css' do |filename|
   scss :"sass/#{filename}"
 end
