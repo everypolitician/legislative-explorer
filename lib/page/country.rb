@@ -47,7 +47,7 @@ module Page
 
     def cities_sparql
       @csparql ||= <<~EOQ
-        SELECT DISTINCT ?city ?cityLabel ?population WHERE
+        SELECT DISTINCT ?city ?cityLabel WHERE
         {
           ?city wdt:P31/wdt:P279* wd:Q515 ; wdt:P17 wd:#{@id} ; wdt:P1082 ?population .
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
