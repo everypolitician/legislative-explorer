@@ -29,7 +29,6 @@ describe 'Homepage' do
     it 'should know some cities' do
       subject.country.cities.map(&:name).must_include 'Tallinn'
     end
-
   end
 
   describe 'title' do

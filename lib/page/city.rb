@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require 'json'
 require 'pry'
-require 'rest-client'
+require_rel '../sparql'
 
 module Page
   class City
@@ -19,7 +18,7 @@ module Page
     end
 
     def city
-      h = results.first
+      h = Sparql.new(sparql).results.first
       City.new(
         h[:city][:value].split('/').last,
         h[:cityLabel][:value],
@@ -27,7 +26,7 @@ module Page
         Item.new(h[:country][:value].split('/').last, h[:countryLabel][:value]),
         Item.new(h[:head][:value].split('/').last, h[:headLabel][:value]),
         Item.new(h[:office][:value].split('/').last, h[:officeLabel][:value]),
-        Item.new(h[:legislature][:value].split('/').last, h[:legislatureLabel][:value]),
+        Item.new(h[:legislature][:value].split('/').last, h[:legislatureLabel][:value])
       )
     end
 
@@ -38,7 +37,7 @@ module Page
 
     def sparql
       @sparql ||= <<~EOQ
-        SELECT ?city ?cityLabel ?country ?countryLabel ?population ?legislature ?legislatureLabel ?head ?headLabel ?office ?officeLabel WHERE 
+        SELECT ?city ?cityLabel ?country ?countryLabel ?population ?legislature ?legislatureLabel ?head ?headLabel ?office ?officeLabel WHERE
         {
           BIND(wd:#{@id} AS ?city)
           OPTIONAL { ?city wdt:P17 ?country }.
@@ -49,20 +48,6 @@ module Page
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
       EOQ
-    end
-
-    WIKIDATA_SPARQL_URL = 'https://query.wikidata.org/sparql'.freeze
-
-    def wikidata(query)
-      result = RestClient.get WIKIDATA_SPARQL_URL, params: { query: query, format: 'json' }
-      json = JSON.parse(result, symbolize_names: true)
-      json[:results][:bindings]
-    rescue RestClient::Exception => e
-      abort "Wikidata query #{query.inspect} failed: #{e.message}"
-    end
-
-    def results
-      @res ||= wikidata(sparql)
     end
   end
 end
