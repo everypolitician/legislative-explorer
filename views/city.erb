@@ -4,8 +4,8 @@
     <h2><%= @page.city.name %></h2>
     <ul>
       <li>Legislature: <a href="/legislature/<%= @page.city.legislature.id %>"><%= @page.city.legislature.name %></a></li>
-      <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= @page.country.head.id %>"><%= @page.country.head.name %></a> 
-          (<a href="https://www.wikidata.org/wiki/<%= @page.country.office.id %>"><%= @page.country.office.name %>)</a></li>
+      <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= @page.city.head.id %>"><%= @page.city.head.name %></a> 
+          (<a href="https://www.wikidata.org/wiki/<%= @page.city.office.id %>"><%= @page.city.office.name %></a>)</li>
     </ul>
   </div>
 </div>

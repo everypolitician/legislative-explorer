@@ -22,14 +22,15 @@ module Page
         Item.new(h[:head], h[:headLabel]),
         Item.new(h[:office], h[:officeLabel]),
         Item.new(h[:legislature], h[:legislatureLabel]),
-        city_results.map { |r| Item.new(r[:city], r[:cityLabel]) }
+        division_results.map { |r| Item.new(r[:item], r[:itemLabel]) },
+        city_results.map { |r| Item.new(r[:item], r[:itemLabel]) },
       )
     end
 
     private
 
     Item = Struct.new(:id, :name)
-    Country = Struct.new(:id, :name, :population, :head, :office, :legislature, :cities)
+    Country = Struct.new(:id, :name, :population, :head, :office, :legislature, :divisions, :cities)
 
     def sparql
       @sparql ||= <<~EOQ
@@ -45,11 +46,24 @@ module Page
       EOQ
     end
 
+    def divisions_sparql
+      @dsparql ||= <<~EOQ
+        SELECT DISTINCT ?item ?itemLabel WHERE
+        {
+          ?item wdt:P31/wdt:P279* wd:Q10864048 ; wdt:P17 wd:#{@id} .
+          OPTIONAL { ?item wdt:P1082 ?population }
+          FILTER NOT EXISTS { ?item wdt:P576 [] }
+          SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+        }
+        ORDER BY DESC(?population)
+      EOQ
+    end
+
     def cities_sparql
       @csparql ||= <<~EOQ
-        SELECT DISTINCT ?city ?cityLabel WHERE
+        SELECT DISTINCT ?item ?itemLabel WHERE
         {
-          ?city wdt:P31/wdt:P279* wd:Q515 ; wdt:P17 wd:#{@id} ; wdt:P1082 ?population .
+          ?item wdt:P31/wdt:P279* wd:Q515 ; wdt:P17 wd:#{@id} ; wdt:P1082 ?population .
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
         ORDER BY DESC(?population)
@@ -57,8 +71,13 @@ module Page
       EOQ
     end
 
+    def division_results
+      @dres ||= Sparql.new(divisions_sparql).results
+    end
+
     def city_results
       @cres ||= Sparql.new(cities_sparql).results
     end
+
   end
 end

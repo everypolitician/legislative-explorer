@@ -5,13 +5,23 @@
       <li>Legislature: <a href="/legislature/<%= @page.country.legislature.id %>"><%= @page.country.legislature.name %></a></li>
       <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= @page.country.head.id %>"><%= @page.country.head.name %></a> 
           (<a href="https://www.wikidata.org/wiki/<%= @page.country.office.id %>"><%= @page.country.office.name %>)</a></li>
-      <li>Cities:
+
+      <li>Divisions:
+        <ol>
+          <% @page.country.divisions.each do |division| %>
+            <li><a href="/division/<%= division.id %>"><%= division.name %></a></li>
+          <% end %>
+        </ol>
+      </li>
+
+      <li>Largest Cities:
         <ol>
           <% @page.country.cities.each do |city| %>
             <li><a href="/city/<%= city.id %>"><%= city.name %></a></li>
           <% end %>
         </ol>
       </li>
+
     </ul>
   </div>
 </div>
