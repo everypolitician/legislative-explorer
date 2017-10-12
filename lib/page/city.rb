@@ -26,22 +26,24 @@ module Page
         Item.new(h[:country], h[:countryLabel]),
         Item.new(h[:head], h[:headLabel]),
         Item.new(h[:office], h[:officeLabel]),
-        Item.new(h[:legislature], h[:legislatureLabel])
+        Item.new(h[:legislature], h[:legislatureLabel]),
+        Item.new(h[:executive], h[:executiveLabel]),
       )
     end
 
     private
 
     Item = Struct.new(:id, :name)
-    City = Struct.new(:id, :name, :population, :country, :head, :office, :legislature)
+    City = Struct.new(:id, :name, :population, :country, :head, :office, :legislature, :executive)
 
     def sparql
       @sparql ||= <<~EOQ
-        SELECT ?city ?cityLabel ?country ?countryLabel ?population ?legislature ?legislatureLabel ?head ?headLabel ?office ?officeLabel WHERE
+        SELECT ?city ?cityLabel ?country ?countryLabel ?population ?legislature ?legislatureLabel ?executive ?executiveLabel ?head ?headLabel ?office ?officeLabel WHERE
         {
           BIND(wd:#{@id} AS ?city)
           OPTIONAL { ?city wdt:P17 ?country }.
           OPTIONAL { ?city wdt:P1082 ?population }.
+          OPTIONAL { ?city wdt:P208 ?executive }.
           OPTIONAL { ?city wdt:P194 ?legislature }.
           OPTIONAL { ?city wdt:P6 ?head }.
           OPTIONAL { ?city wdt:P1313 ?office }.
