@@ -20,13 +20,13 @@ module Page
     def city
       h = Sparql.new(sparql).results.first
       City.new(
-        h[:city][:value].split('/').last,
-        h[:cityLabel][:value],
-        h[:population][:value],
-        Item.new(h[:country][:value].split('/').last, h[:countryLabel][:value]),
-        Item.new(h[:head][:value].split('/').last, h[:headLabel][:value]),
-        Item.new(h[:office][:value].split('/').last, h[:officeLabel][:value]),
-        Item.new(h[:legislature][:value].split('/').last, h[:legislatureLabel][:value])
+        h[:city],
+        h[:cityLabel],
+        h[:population],
+        Item.new(h[:country], h[:countryLabel]),
+        Item.new(h[:head], h[:headLabel]),
+        Item.new(h[:office], h[:officeLabel]),
+        Item.new(h[:legislature], h[:legislatureLabel])
       )
     end
 

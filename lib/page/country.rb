@@ -16,13 +16,13 @@ module Page
     def country
       h = Sparql.new(sparql).results.first
       Country.new(
-        h[:country][:value].split('/').last,
-        h[:countryLabel][:value],
-        h[:population][:value],
-        Item.new(h[:head][:value].split('/').last, h[:headLabel][:value]),
-        Item.new(h[:office][:value].split('/').last, h[:officeLabel][:value]),
-        Item.new(h[:legislature][:value].split('/').last, h[:legislatureLabel][:value]),
-        city_results.map { |r| Item.new(r[:city][:value].split('/').last, r[:cityLabel][:value]) }
+        h[:country],
+        h[:countryLabel],
+        h[:population],
+        Item.new(h[:head], h[:headLabel]),
+        Item.new(h[:office], h[:officeLabel]),
+        Item.new(h[:legislature], h[:legislatureLabel]),
+        city_results.map { |r| Item.new(r[:city], r[:cityLabel]) }
       )
     end
 

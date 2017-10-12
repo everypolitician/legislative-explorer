@@ -12,7 +12,7 @@ module Page
     end
 
     def countries
-      Sparql.new(sparql).results.map { |h| Country.new(h[:item][:value].split('/').last, h[:itemLabel][:value]) }
+      Sparql.new(sparql).results.map { |h| Country.new(h[:item], h[:itemLabel]) }
     end
 
     private

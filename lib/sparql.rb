@@ -11,7 +11,11 @@ class Sparql
   end
 
   def results
-    raw_json[:results][:bindings]
+    bindings.map do |r|
+      r.map do |k, v|
+        [ k, v[:type] == 'uri' && v[:value].include?('http://www.wikidata.org/entity/') ? v[:value].split('/').last : v[:value] ]
+      end.to_h
+    end
   end
 
   private
@@ -26,5 +30,9 @@ class Sparql
 
   def raw_json
     @json ||= JSON.parse(result, symbolize_names: true)
+  end
+
+  def bindings
+    raw_json[:results][:bindings]
   end
 end
