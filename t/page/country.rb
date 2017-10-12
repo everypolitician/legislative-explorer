@@ -27,8 +27,7 @@ describe 'Homepage' do
     end
 
     it 'should know some cities' do
-      binding.pry
-      subject.country.cities.name.must_equal 'Riigikogu'
+      subject.country.cities.map(&:name).must_include 'Tallinn'
     end
 
   end

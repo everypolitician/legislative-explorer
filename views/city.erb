@@ -1,0 +1,10 @@
+
+<div class="page-section">
+  <div class="container">
+    <h2><%= @page.city.name %></h2>
+    <ul>
+      <li>Legislature: <a href="/legislature/<%= @page.city.legislature.id %>"><%= @page.city.legislature.name %></a></li>
+      <li>Head of Government: <%= @page.city.head.name %> (<%= @page.city.office.name %>)</li>
+    </ul>
+  </div>
+</div>
