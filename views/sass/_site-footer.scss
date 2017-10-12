@@ -1,0 +1,12 @@
+.mysoc-footer {
+// we use the layout here with three sections, rather than two
+// (our layout code assumes two columns)
+// so we need to shorten the width by 1.5%
+  .column-one-third {
+    width: 28.8333%;
+  }
+}
+
+.mysoc-footer__links {
+  font-size: 0.8888889em;
+}

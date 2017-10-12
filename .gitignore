@@ -1,0 +1,11 @@
+*.swp
+
+.env
+.vagrant
+.sass-cache
+.yardoc/
+
+*.swo
+
+_cached_data/*
+.rubocop-https---raw-githubusercontent-com-everypolitician-everypolitician-data-master--rubocop-base-yml

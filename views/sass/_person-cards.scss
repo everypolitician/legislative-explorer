@@ -1,0 +1,202 @@
+.person-card {
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+.person-card__primary,
+.person-card__section {
+  padding: 18px;
+}
+
+.person-card__primary {
+  @include clearfix();
+}
+
+.person-card__image {
+  float: left;
+  width: (18px * 3);
+  height: auto;
+}
+
+.person-card__name,
+.person-card__politics {
+  margin: 0 0 0 (18px * 4);
+  line-height: 1.3em;
+}
+
+.person-card__politics {
+  margin-top: 0.2em;
+  font-size: (16em / 18);
+
+  // Bit more space between paragraphs to make it
+  // clear which date applies to which position.
+  & + .person-card__politics {
+    margin-top: 0.5em;
+  }
+}
+
+.person-card__politics__date {
+  display: block;
+  font-size: (14em / 16);
+  color: $colour_mid_grey;
+}
+
+.person-card__section {
+  background-color: mix(#fff, $colour_green, 95%);
+  border-top: 1px solid mix(#eee, $colour_green, 95%);
+  font-size: (16em / 18);
+
+  // The person-card sections are hidden by default,
+  // and then toggled using JavaScript.
+  display: none;
+
+  .gender {
+    text-transform: capitalize;
+  }
+
+  table {
+    font-size: inherit;
+    margin: 0;
+  }
+
+  td, th {
+    border: none;
+    padding: 0;
+  }
+
+  tr + tr {
+    th, td {
+      padding-top: 0.5em; // 0.5em space between rows
+    }
+  }
+
+  tr:hover {
+    background-color: transparent;
+  }
+
+  td {
+    padding-left: 1em;
+    width: 100%; // This column will expand as wide as possible
+    line-height: 1.3em;
+  }
+
+  th {
+    font-size: 0.9em;
+    line-height: 1.5em;
+    font-weight: inherit;
+    color: mix(#999, $colour_green, 50%);
+    vertical-align: top;
+  }
+}
+
+// List of person-card__sections.
+$person_card_sections: (
+  'social',
+  'bio',
+  'contacts',
+  'identifiers'
+);
+
+// Show person-card__sections when their container has the right class.
+@each $section in $person_card_sections {
+  [data-active-section="#{$section}"] .person-card__section--#{$section} {
+    display: block;
+  }
+}
+
+// Allow sections to be temporarily unhidden if they contain text
+// matching the user’s current search (via .js-filter-input)
+.js-person-card__section--visible {
+  display: block !important;
+}
+
+.js-filter-target--hidden {
+  display: none;
+}
+
+.card-filters {
+    border-top: 1px solid $colour_light_grey;
+    border-bottom: 1px solid $colour_light_grey;
+
+    @media (min-width: $medium_screen) {
+        padding: 1em 0;
+        text-align: center;
+    }
+
+    .js-fixed-child--fixed & {
+        background-color: transparentize($colour_off_white, 0.1);
+        border-top-color: transparentize($colour_off_white, 0.1);;
+        margin: 0 -1em;
+        padding-left: 1em;
+        padding-right: 1em;
+        box-shadow: 0 1em 1em -1em rgba(0,0,0,0.2);
+    }
+}
+
+.card-filters__filter {
+    margin: 1em 0;
+
+    // Optional flexbox layout to wrap label and input onto same line
+    @include flexbox();
+    @include flex-align(baseline);
+
+    label {
+        display: block;
+        font-size: 0.8em;
+        margin-bottom: 0.3em;
+
+        // Don't grow, don't shrink
+        @include flex(0 0 auto);
+
+        // These styles should still look ok, even without flexbox support
+        // so no need for body.flexwrap check.
+        padding-right: 1em;
+        white-space: nowrap;
+    }
+
+    label + * {
+        // Grow but don't shrink
+        @include flex(1 0 auto);
+    }
+
+    .js-filter-trigger--changed,
+    input[type].js-filter-trigger--changed {
+        background-color: $colour_pale_yellow;
+        border: 2px solid $colour_green;
+    }
+
+    @media (min-width: $medium_screen) {
+        // Flexbox begone. Arrange the filters on single, centred line.
+        display: inline;
+        display: inline-block;
+        margin: 0;
+
+        & + & {
+            margin-left: 1.5em;
+        }
+
+        label,
+        label + * {
+            @include flex(none);
+        }
+
+        label,
+        .form-control,
+        input[type].form-control {
+            display: inline;
+            display: inline-block;
+            width: auto;
+        }
+
+        .form-control,
+        input[type].form-control {
+            min-width: 11em; // Enough space for some text, but not too wide
+        }
+
+        label {
+            font-size: 0.9em;
+            margin-bottom: 0;
+            padding-right: 0.5em;
+        }
+    }
+}

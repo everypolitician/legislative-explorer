@@ -1,0 +1,19 @@
+<div class="page-section" id="countries">
+    <div class="container">
+
+      <div class="text-center">
+          <h2>Data from <%= @page.countries.length %> countries</h2>
+      </div>
+
+      <ul class="grid-list grid-list--vertically-center">
+        <% @page.countries.each do |c| %>
+          <li>
+              <a class="avatar-unit" href="/country/<%= c.id %>/">
+                  <span class="avatar"><i class="fa fa-users"></i></span>
+                  <h3><%= c.name %></h3>
+              </a>
+          </li>
+        <% end %>
+      </ul>
+  </div>
+</div>
