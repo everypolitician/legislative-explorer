@@ -22,7 +22,9 @@ module Page
     def sparql
       @sparql ||= <<~EOQ
         SELECT ?item ?itemLabel WHERE {
-          ?item wdt:P31 wd:Q160016.
+          ?item p:P31 ?statement .
+          ?statement ps:P31 wd:Q160016 .
+          FILTER NOT EXISTS { ?statement pq:P582 ?end }
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
         ORDER BY ?itemLabel

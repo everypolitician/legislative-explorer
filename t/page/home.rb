@@ -17,7 +17,7 @@ describe 'Homepage' do
 
   describe 'title' do
     it 'should give the country count in the title' do
-      subject.title.must_include '196 countries'
+      subject.title.must_include '193 countries'
     end
   end
 end
