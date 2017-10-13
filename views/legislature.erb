@@ -1,0 +1,18 @@
+
+<div class="page-section">
+  <div class="container">
+    <h2><%= @page.legislature.name %></h2>
+    <% if @page.bicameral? %>
+      <h3>Chambers</h3>
+      <ul>
+      <% @page.chambers.each do |chamber| %>
+        <li><a href="/legislature/<%= chamber.id %>"><%= chamber.name %></a></li>
+      <% end %>
+      </ul>
+    <% else %>
+      <ul>
+        <li>Seats: <%= @page.legislature.seats %></li>
+      </ul>
+    <% end %>
+  </div>
+</div>

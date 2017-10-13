@@ -34,6 +34,11 @@ get '/division/:qid' do |qid|
   erb :city
 end
 
+get '/legislature/:qid' do |qid|
+  @page = Page::Legislature.new(id: qid)
+  erb :legislature
+end
+
 get '/*.css' do |filename|
   scss :"sass/#{filename}"
 end

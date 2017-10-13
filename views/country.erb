@@ -2,7 +2,7 @@
 <div class="page-section">
   <div class="container">
     <ul>
-      <li>Legislature: <a href="https://www.wikidata.org/wiki/<%= @page.country.legislature.id %>"><%= @page.country.legislature.name %></a></li>
+      <li>Legislature: <a href="/legislature/<%= @page.country.legislature.id %>"><%= @page.country.legislature.name %></a></li>
       <li>Government: <a href="https://www.wikidata.org/wiki/<%= @page.country.executive.id %>"><%= @page.country.executive.name %></a></li>
       <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= @page.country.head.id %>"><%= @page.country.head.name %></a> 
           (<a href="https://www.wikidata.org/wiki/<%= @page.country.office.id %>"><%= @page.country.office.name %>)</a></li>
