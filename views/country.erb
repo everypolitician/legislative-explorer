@@ -9,7 +9,7 @@
 
       <li>Divisions:
         <ol>
-          <% @page.country.divisions.each do |division| %>
+          <% @page.divisions.each do |division| %>
             <li><a href="/division/<%= division.id %>"><%= division.name %></a></li>
           <% end %>
         </ol>
@@ -17,7 +17,7 @@
 
       <li>Largest Cities:
         <ol>
-          <% @page.country.cities.each do |city| %>
+          <% @page.cities.each do |city| %>
             <li><a href="/city/<%= city.id %>"><%= city.name %></a></li>
           <% end %>
         </ol>
