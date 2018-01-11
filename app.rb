@@ -8,6 +8,7 @@ require 'sinatra'
 
 require_relative './lib/html_helper'
 require_rel './lib/page'
+require_rel './lib/query'
 
 Dotenv.load
 helpers HTMLHelper
@@ -15,7 +16,8 @@ helpers HTMLHelper
 set :erb, trim: '-'
 
 get '/' do
-  @page = Page::Home.new
+  countries = Query::CountryList.new.data
+  @page = Page::Home.new(countries: countries)
   erb :homepage
 end
 
