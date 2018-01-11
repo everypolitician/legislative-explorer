@@ -10,6 +10,12 @@ require_relative './lib/html_helper'
 require_rel './lib/page'
 require_rel './lib/query'
 
+class Fixnum
+  def commify
+    self.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+  end
+end
+
 Dotenv.load
 helpers HTMLHelper
 

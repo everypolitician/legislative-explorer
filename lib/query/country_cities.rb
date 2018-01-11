@@ -10,18 +10,18 @@ module Query
     end
 
     def data
-      city_results.map { |r| Item.new(r[:item], r[:itemLabel]) }
+      city_results.map { |r| Item.new(r[:item], r[:itemLabel], r[:population]) }
     end
 
     private
 
     attr_reader :id
 
-    Item = Struct.new(:id, :name)
+    Item = Struct.new(:id, :name, :population)
 
     def sparql
       @sparql ||= <<~EOQ
-        SELECT DISTINCT ?item ?itemLabel WHERE
+        SELECT DISTINCT ?item ?itemLabel ?population WHERE
         {
           ?item wdt:P31/wdt:P279* wd:Q515 ; wdt:P17 wd:#{id} ; wdt:P1082 ?population .
           FILTER (?population > 250000)

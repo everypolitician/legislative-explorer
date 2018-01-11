@@ -18,7 +18,7 @@
       <li>Largest Cities:
         <ol>
           <% @page.cities.each do |city| %>
-            <li><a href="/city/<%= city.id %>"><%= city.name %></a></li>
+            <li><a href="/city/<%= city.id %>"><%= city.name %></a> (pop. <%= city.population.to_i.commify %>)</li>
           <% end %>
         </ol>
       </li>
