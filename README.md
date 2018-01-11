@@ -6,7 +6,7 @@ quick spike by reusing lots of the pre-existing code from
 https://github.com/everypolitician/viewer-sinatra, and by embedding lots
 of logic for the individual item types directly into the Page classes as
 Structs. Ideally these would be factored out to their own classes, or a
-standlone gem.
+standalone gem.
 
 ## Running the app
 
