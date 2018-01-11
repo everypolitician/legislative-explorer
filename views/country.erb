@@ -10,7 +10,7 @@
       <li>Divisions:
         <ol>
           <% @page.divisions.each do |division| %>
-            <li><a href="/division/<%= division.id %>"><%= division.name %></a></li>
+            <li><a href="/division/<%= division.id %>"><%= division.name %></a> (pop. <%= division.population.to_i.commify %>)</li>
           <% end %>
         </ol>
       </li>
