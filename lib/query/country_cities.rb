@@ -24,10 +24,10 @@ module Query
         SELECT DISTINCT ?item ?itemLabel WHERE
         {
           ?item wdt:P31/wdt:P279* wd:Q515 ; wdt:P17 wd:#{id} ; wdt:P1082 ?population .
+          FILTER (?population > 250000)
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
         ORDER BY DESC(?population)
-        LIMIT 5
       EOQ
     end
 
