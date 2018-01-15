@@ -36,11 +36,6 @@ get '/country/:qid' do |qid|
   erb :country
 end
 
-get '/city/:qid' do |qid|
-  @page = Page::City.new(id: qid)
-  erb :city
-end
-
 get '/legislature/:qid' do |qid|
   @page = Page::Legislature.new(id: qid)
   erb :legislature

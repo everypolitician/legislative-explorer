@@ -9,15 +9,15 @@
 
       <li>Divisions:
         <ol>
-          <% @page.divisions.each do |division| %>
+          <% @page.divisions.each do |place| %>
             <li>
-              <a href="https://www.wikidata.org/wiki/<%= division.id %>"><%= division.name %></a> (pop. <%= division.population.to_i.commify %>)
+              <a href="https://www.wikidata.org/wiki/<%= place.id %>"><%= place.name %></a> (pop. <%= place.population.to_i.commify %>)
               <ul>
-                <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= division.head.id %>"><%= division.head.name %>
-                  (<a href="https://www.wikidata.org/wiki/<%= division.office.id %>"><%= division.office.name %>)</a></li>
+                <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= place.head.id %>"><%= place.head.name %>
+                  (<a href="https://www.wikidata.org/wiki/<%= place.office.id %>"><%= place.office.name %>)</a></li>
                 <li>Legislature:
-                  <% if division.legislature.id %>
-                    <a href="/legislature/<%= division.legislature.id %>"><%= division.legislature.name || '???' %></a>
+                  <% if place.legislature.id %>
+                    <a href="/legislature/<%= place.legislature.id %>"><%= place.legislature.name || '???' %></a>
                   <% else %>
                     ???
                   <% end %>
@@ -28,10 +28,23 @@
         </ol>
       </li>
 
-      <li>Largest Cities:
+      <li>Largest cities:
         <ol>
-          <% @page.cities.each do |city| %>
-            <li><a href="/city/<%= city.id %>"><%= city.name %></a> (pop. <%= city.population.to_i.commify %>)</li>
+          <% @page.cities.each do |place| %>
+            <li>
+              <a href="https://www.wikidata.org/wiki/<%= place.id %>"><%= place.name %></a> (pop. <%= place.population.to_i.commify %>)
+              <ul>
+                <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= place.head.id %>"><%= place.head.name %>
+                  (<a href="https://www.wikidata.org/wiki/<%= place.office.id %>"><%= place.office.name %>)</a></li>
+                <li>Legislature:
+                  <% if place.legislature.id %>
+                    <a href="/legislature/<%= place.legislature.id %>"><%= place.legislature.name || '???' %></a>
+                  <% else %>
+                    ???
+                  <% end %>
+                </li>
+              </ul>
+            </li>
           <% end %>
         </ol>
       </li>
