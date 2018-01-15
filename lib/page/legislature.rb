@@ -71,7 +71,7 @@ module Page
 
     def parts_sparql
       @parts_sparql ||= <<~EOQ
-        SELECT ?part ?partLabel WHERE
+        SELECT DISTINCT ?part ?partLabel WHERE
         {
           wd:#{@id} wdt:P527 ?part .
           ?part wdt:P31/wdt:P279* wd:Q10553309 .
