@@ -2,49 +2,20 @@
 <div class="page-section">
   <div class="container">
     <ul>
-      <li>Legislature: <a href="/legislature/<%= @page.country.legislature.id %>"><%= @page.country.legislature.name %></a></li>
-      <li>Government: <a href="https://www.wikidata.org/wiki/<%= @page.country.executive.id %>"><%= @page.country.executive.name %></a></li>
-      <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= @page.country.head.id %>"><%= @page.country.head.name %></a> 
-          (<a href="https://www.wikidata.org/wiki/<%= @page.country.office.id %>"><%= @page.country.office.name %>)</a></li>
+      <%= erb :place_info, locals: { place: @page.country } %>
 
       <li>Divisions:
         <ol>
-          <% @page.divisions.each do |place| %>
-            <li>
-              <a href="https://www.wikidata.org/wiki/<%= place.id %>"><%= place.name %></a> (pop. <%= place.population.to_i.commify %>)
-              <ul>
-                <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= place.head.id %>"><%= place.head.name %>
-                  (<a href="https://www.wikidata.org/wiki/<%= place.office.id %>"><%= place.office.name %>)</a></li>
-                <li>Legislature:
-                  <% if place.legislature.id %>
-                    <a href="/legislature/<%= place.legislature.id %>"><%= place.legislature.name || '???' %></a>
-                  <% else %>
-                    ???
-                  <% end %>
-                </li>
-              </ul>
-            </li>
+          <% @page.divisions.each do |division| %>
+            <%= erb :place_info, locals: { place: division } %>
           <% end %>
         </ol>
       </li>
 
       <li>Largest cities:
         <ol>
-          <% @page.cities.each do |place| %>
-            <li>
-              <a href="https://www.wikidata.org/wiki/<%= place.id %>"><%= place.name %></a> (pop. <%= place.population.to_i.commify %>)
-              <ul>
-                <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= place.head.id %>"><%= place.head.name %>
-                  (<a href="https://www.wikidata.org/wiki/<%= place.office.id %>"><%= place.office.name %>)</a></li>
-                <li>Legislature:
-                  <% if place.legislature.id %>
-                    <a href="/legislature/<%= place.legislature.id %>"><%= place.legislature.name || '???' %></a>
-                  <% else %>
-                    ???
-                  <% end %>
-                </li>
-              </ul>
-            </li>
+          <% @page.cities.each do |city| %>
+            <%= erb :place_info, locals: { place: city } %>
           <% end %>
         </ol>
       </li>
