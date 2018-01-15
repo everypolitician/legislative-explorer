@@ -10,7 +10,20 @@
       <li>Divisions:
         <ol>
           <% @page.divisions.each do |division| %>
-            <li><a href="/division/<%= division.id %>"><%= division.name %></a> (pop. <%= division.population.to_i.commify %>)</li>
+            <li>
+              <a href="https://www.wikidata.org/wiki/<%= division.id %>"><%= division.name %></a> (pop. <%= division.population.to_i.commify %>)
+              <ul>
+                <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= division.head.id %>"><%= division.head.name %>
+                  (<a href="https://www.wikidata.org/wiki/<%= division.office.id %>"><%= division.office.name %>)</a></li>
+                <li>Legislature:
+                  <% if division.legislature.id %>
+                    <a href="/legislature/<%= division.legislature.id %>"><%= division.legislature.name || '???' %></a>
+                  <% else %>
+                    ???
+                  <% end %>
+                </li>
+              </ul>
+            </li>
           <% end %>
         </ol>
       </li>
