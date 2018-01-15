@@ -1,13 +1,25 @@
 <li>
   <a href="https://www.wikidata.org/wiki/<%= place.id %>"><%= place.name %></a> (pop. <%= place.population.to_i.commify %>)
   <ul>
-    <li>Head of Government: <a href="https://www.wikidata.org/wiki/<%= place.head.id %>"><%= place.head.name %>
-      <a href="https://www.wikidata.org/wiki/<%= place.office.id %>">(<%= place.office.name %>)</a></li>
+    <li>Head of Government:
+      <% if place.head.id %>
+        <a href="https://www.wikidata.org/wiki/<%= place.head.id %>"><%= place.head.name %></a>
+      <% else %>
+        <i>holder unknown</i>
+      <% end %>
+
+      <% if place.office.id %>
+        (<a href="https://www.wikidata.org/wiki/<%= place.office.id %>"><%= place.office.name %></a>)
+      <% else %>
+        (<i>office unknown</i>)
+      <% end %>
+    </li>
+
     <li>Legislature:
       <% if place.legislature.id %>
         <a href="/legislature/<%= place.legislature.id %>"><%= place.legislature.name || '???' %></a>
       <% else %>
-        ???
+        <i>unknown</i>
       <% end %>
     </li>
   </ul>
