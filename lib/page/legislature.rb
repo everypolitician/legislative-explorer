@@ -26,7 +26,7 @@ module Page
         Item.new(h[:jurisdiction], h[:jurisdictionLabel]),
         Item.new(h[:country], h[:countryLabel]),
         h[:seats],
-        chambers,
+        chambers
       )
     end
 
@@ -92,6 +92,5 @@ module Page
         }
       EOQ
     end
-
   end
 end

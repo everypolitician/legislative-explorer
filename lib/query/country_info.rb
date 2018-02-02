@@ -17,7 +17,7 @@ module Query
         Item.new(h[:executive], h[:executiveLabel]),
         Item.new(h[:head], h[:headLabel]),
         Item.new(h[:office], h[:officeLabel]),
-        Item.new(h[:legislature], h[:legislatureLabel]),
+        Item.new(h[:legislature], h[:legislatureLabel])
       )
     end
 
