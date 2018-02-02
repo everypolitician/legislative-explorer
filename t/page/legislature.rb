@@ -77,7 +77,7 @@ describe 'Bicameral' do
 
     it 'should have chambers' do
       subject.chambers.count.must_equal 2
-      subject.chambers.map(&:id).must_equal %w[Q11005 Q11007]
+      subject.chambers.map(&:id).sort.must_equal %w[Q11005 Q11007]
     end
   end
 end
