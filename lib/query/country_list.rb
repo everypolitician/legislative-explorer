@@ -13,7 +13,7 @@ module Query
     Country = Struct.new(:id, :name)
 
     def sparql
-      @sparql ||= <<~EOQ
+      @sparql ||= <<~SPARQL
         SELECT ?item ?itemLabel WHERE {
           ?item p:P31 ?statement .
           ?statement ps:P31 wd:Q160016 .
@@ -22,7 +22,7 @@ module Query
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
         ORDER BY ?itemLabel
-      EOQ
+      SPARQL
     end
   end
 end

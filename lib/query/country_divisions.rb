@@ -30,7 +30,7 @@ module Query
     Division = Struct.new(:id, :name, :population, :legislature, :office, :head)
 
     def sparql
-      @sparql ||= <<~EOQ
+      @sparql ||= <<~SPARQL
         SELECT DISTINCT ?item ?itemLabel ?population ?office ?officeLabel ?head ?headLabel ?legislature ?legislatureLabel WHERE
         {
           ?item wdt:P31/wdt:P279* wd:Q10864048 ; wdt:P17 wd:#{id} .
@@ -42,7 +42,7 @@ module Query
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
         ORDER BY DESC(?population)
-      EOQ
+      SPARQL
     end
 
     def division_results
