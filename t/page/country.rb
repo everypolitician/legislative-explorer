@@ -19,7 +19,7 @@ describe 'Estonia Page' do
     end
 
     it 'should know its population' do
-      subject.country.population.must_equal '1313271'
+      subject.country.population.must_equal '1315635'
     end
 
     it 'should know its head of government' do
