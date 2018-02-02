@@ -4,7 +4,6 @@ before_install:
   - echo -e "machine github.com\n  login $GITHUB_ACCESS_TOKEN" >> ~/.netrc
 script:
   - bundle exec rake
-  - travis_wait 30 scripts/release.sh
   - bash <(curl -fsSL https://github.com/everypolitician/ensure-regression-tests/raw/master/ensure-regression-tests)
 sudo: false
 rvm:
