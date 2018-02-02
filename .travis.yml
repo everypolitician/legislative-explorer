@@ -15,4 +15,3 @@ notifications:
 env:
   global:
     - secure: cwq0zTDtALPr4nm29EgvQ6v5oIzYsE+DEP3Vt4unrTuv84JywWu2mry+YiXLCmcermD433BG5Fy/E+MUXAXiGjMtJr6wqkVe8HlDH3xOCJ4LBzR/hrE1x5Ufke6UmHCdpcWlSTNO8eQDP1k/X2Pz6Zng2TlmenLwGwUNZ82O5vM=
-    - PATH="$PATH:$HOME/bin"
