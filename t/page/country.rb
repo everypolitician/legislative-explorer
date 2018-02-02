@@ -3,8 +3,15 @@
 require 'test_helper'
 require_relative '../../lib/page/country'
 
-describe 'Homepage' do
-  subject { Page::Country.new(id: 'Q191') }
+def country_page(qid)
+  country = Query::CountryInfo.new(id: qid).data
+  divisions = Query::CountryDivisions.new(id: qid).data
+  cities = Query::CountryCities.new(id: qid).data
+  Page::Country.new(country: country, divisions: divisions, cities: cities)
+end
+
+describe 'Estonia Page' do
+  subject { country_page('Q191') }
 
   describe 'data' do
     it 'should know its name' do
