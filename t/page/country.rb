@@ -13,7 +13,7 @@ end
 describe 'Estonia Page' do
   subject { country_page('Q191') }
 
-  describe 'data' do
+  describe 'Country data' do
     it 'should know its name' do
       subject.country.name.must_equal 'Estonia'
     end
@@ -33,14 +33,22 @@ describe 'Estonia Page' do
     it 'should know its legislature' do
       subject.country.legislature.name.must_equal 'Riigikogu'
     end
+  end
+
+  describe 'City data' do
+    let(:tallinn) { subject.cities.find { |c| c.id == 'Q1770' } }
 
     it 'should know some cities' do
-      subject.country.cities.map(&:name).must_include 'Tallinn'
+      tallinn.name.must_equal 'Tallinn'
+    end
+
+    it 'should know info about cities' do
+      tallinn.office.name.downcase.must_equal 'mayor of tallinn'
     end
   end
 
   describe 'title' do
-    it 'should give the name in the title' do
+    it 'should give the country name in the title' do
       subject.title.must_include 'Estonia'
     end
   end
