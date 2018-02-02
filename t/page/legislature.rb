@@ -1,7 +1,7 @@
 # frozen_string_literal: true
+
 require 'test_helper'
 require_relative '../../lib/page/legislature'
-
 
 describe 'Unicameral' do
   let(:page) { Page::Legislature.new(id: 'Q217799') }
@@ -77,7 +77,7 @@ describe 'Bicameral' do
 
     it 'should have chambers' do
       subject.chambers.count.must_equal 2
-      subject.chambers.map(&:id).must_equal [ 'Q11005', 'Q11007' ]
+      subject.chambers.map(&:id).must_equal %w[Q11005 Q11007]
     end
   end
 end
@@ -108,4 +108,3 @@ describe 'Lower' do
     end
   end
 end
-

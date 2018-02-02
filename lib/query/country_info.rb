@@ -17,7 +17,7 @@ module Query
         Item.new(h[:executive], h[:executiveLabel]),
         Item.new(h[:head], h[:headLabel]),
         Item.new(h[:office], h[:officeLabel]),
-        Item.new(h[:legislature], h[:legislatureLabel]),
+        Item.new(h[:legislature], h[:legislatureLabel])
       )
     end
 
@@ -29,7 +29,7 @@ module Query
     Country = Struct.new(:id, :name, :population, :executive, :head, :office, :legislature)
 
     def sparql
-      @sparql ||= <<~EOQ
+      @sparql ||= <<~SPARQL
         SELECT ?country ?countryLabel ?population ?executive ?executiveLabel ?legislature ?legislatureLabel ?head ?headLabel ?office ?officeLabel WHERE
         {
           BIND(wd:#{id} AS ?country)
@@ -40,7 +40,7 @@ module Query
           OPTIONAL { ?country wdt:P1313 ?office }.
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
-      EOQ
+      SPARQL
     end
   end
 end

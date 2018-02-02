@@ -6,7 +6,7 @@ require_rel '../sparql'
 module Query
   class CountryCities < CountryDivisions
     def sparql
-      @sparql ||= <<~EOQ
+      @sparql ||= <<~SPARQL
         SELECT DISTINCT ?item ?itemLabel ?population ?office ?officeLabel ?head ?headLabel ?legislature ?legislatureLabel WHERE
         {
           ?item wdt:P31/wdt:P279* wd:Q515 ; wdt:P17 wd:#{@id} ; wdt:P1082 ?population .
@@ -17,7 +17,7 @@ module Query
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
         ORDER BY DESC(?population)
-      EOQ
+      SPARQL
     end
   end
 end

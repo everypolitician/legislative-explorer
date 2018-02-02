@@ -26,7 +26,7 @@ module Page
         Item.new(h[:jurisdiction], h[:jurisdictionLabel]),
         Item.new(h[:country], h[:countryLabel]),
         h[:seats],
-        chambers,
+        chambers
       )
     end
 
@@ -60,28 +60,28 @@ module Page
     end
 
     def type_sparql
-      @type_sparql ||= <<~EOQ
+      @type_sparql ||= <<~SPARQL
         SELECT ?isa ?isaLabel WHERE
         {
           wd:#{@id} wdt:P31 ?isa .
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
-      EOQ
+      SPARQL
     end
 
     def parts_sparql
-      @parts_sparql ||= <<~EOQ
+      @parts_sparql ||= <<~SPARQL
         SELECT DISTINCT ?part ?partLabel WHERE
         {
           wd:#{@id} wdt:P527 ?part .
           ?part wdt:P31/wdt:P279* wd:Q10553309 .
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
-      EOQ
+      SPARQL
     end
 
     def sparql
-      @sparql ||= <<~EOQ
+      @sparql ||= <<~SPARQL
         SELECT ?legislature ?legislatureLabel ?jurisdiction ?jurisdictionLabel ?country ?countryLabel ?seats ?part ?partLabel WHERE
         {
           BIND(wd:#{@id} AS ?legislature)
@@ -90,8 +90,7 @@ module Page
           OPTIONAL { ?legislature wdt:P17 ?country }.
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
-      EOQ
+      SPARQL
     end
-
   end
 end
