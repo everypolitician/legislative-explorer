@@ -35,6 +35,18 @@ describe 'Estonia Page' do
     end
   end
 
+  describe 'Divisions data' do
+    let(:harju) { subject.divisions.find { |c| c.id == 'Q180200' } }
+
+    it 'should know some divisions' do
+      harju.name.must_equal 'Harju County'
+    end
+
+    it 'should know info about cities' do
+      harju.head.name.must_equal 'Ülle Rajasalu'
+    end
+  end
+
   describe 'City data' do
     let(:tallinn) { subject.cities.find { |c| c.id == 'Q1770' } }
 
