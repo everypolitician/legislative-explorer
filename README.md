@@ -1,4 +1,4 @@
-# Legislative Explorer
+# Legislative Explorer [![Build Status](https://travis-ci.org/everypolitician/legislative-explorer.svg?branch=master)](https://travis-ci.org/everypolitician/legislative-explorer)
 
 This is a very rough and ready prototype for investigating legislative
 information in Wikidata.
