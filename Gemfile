@@ -29,6 +29,8 @@ group :test do
   gem 'minitest'
   gem 'pry'
   gem 'rack-test'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :quality do

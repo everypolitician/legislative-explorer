@@ -5,7 +5,9 @@ require 'test_helper'
 require_rel '../../lib'
 
 describe 'Homepage' do
-  subject { Page::Home.new(countries: Query::CountryList.new.data) }
+  subject do
+    VCR.use_cassette('Homepage') { Page::Home.new(countries: Query::CountryList.new.data) }
+  end
 
   describe 'countries' do
     it 'should include free countries' do
