@@ -3,6 +3,7 @@
 ENV['RACK_ENV'] = 'test'
 
 require 'minitest/autorun'
+require 'minitest/around'
 require 'nokogiri'
 require 'pathname'
 require 'rack/test'

@@ -11,9 +11,9 @@ def country_page(qid)
 end
 
 describe 'Estonia Page' do
-  subject do
-    VCR.use_cassette('Estonia Page') { country_page('Q191') }
-  end
+  around { |test| VCR.use_cassette('Estonia Page', &test) }
+
+  subject { country_page('Q191') }
 
   describe 'Country data' do
     it 'should know its name' do
