@@ -11,5 +11,3 @@ https://github.com/everypolitician/viewer-sinatra
 
 This is a sinatra app, and should run using any `foreman`-like manager.
 (Though only tested with https://github.com/chrismytton/shoreman)
-
-
