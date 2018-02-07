@@ -1,3 +1,5 @@
+# Legislative Explorer [![Build Status](https://travis-ci.org/everypolitician/legislative-explorer.svg?branch=master)](https://travis-ci.org/everypolitician/legislative-explorer)
+
 This is a very rough and ready prototype for investigating legislative
 information in Wikidata.
 
@@ -9,5 +11,3 @@ https://github.com/everypolitician/viewer-sinatra
 
 This is a sinatra app, and should run using any `foreman`-like manager.
 (Though only tested with https://github.com/chrismytton/shoreman)
-
-
