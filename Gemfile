@@ -27,6 +27,7 @@ group :test do
   gem 'bundler-audit'
   gem 'html_validation'
   gem 'minitest'
+  gem 'minitest-around'
   gem 'pry'
   gem 'rack-test'
   gem 'vcr'
