@@ -1,0 +1,109 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?item%20?itemLabel%20WHERE%20%7B%0A%20%20?item%20p:P31%20?statement%20.%0A%20%20?statement%20ps:P31%20wd:Q160016%20.%0A%20%20MINUS%20%7B%20?statement%20pq:P582%20?end%20%7D%20%20%20%20%20%20%23%20no%20longer%20a%20country%0A%20%20MINUS%20%7B%20?item%20wdt:P1552%20wd:Q47185282%20%7D%20%23%20not%20free%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0AORDER%20BY%20?itemLabel%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 07 Feb 2018 03:55:43 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '1706'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs2003
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 126208967, 63909304
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp2006 miss, cp2018 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=07-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        11 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=07-Feb-2018;Path=/;HttpOnly;secure;Expires=Sun, 11 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 121.44.141.17
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+    http_version: 
+  recorded_at: Wed, 07 Feb 2018 03:55:43 GMT
+recorded_with: VCR 4.0.0
