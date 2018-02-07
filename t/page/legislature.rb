@@ -4,8 +4,7 @@ require 'test_helper'
 require_relative '../../lib/page/legislature'
 
 describe 'Unicameral' do
-  before { VCR.insert_cassette('Unicameral legislature') }
-  after { VCR.eject_cassette }
+  around { |test| VCR.use_cassette('Unicameral legislature', &test) }
 
   let(:page) { Page::Legislature.new(id: 'Q217799') }
   subject { page.legislature }
@@ -46,8 +45,7 @@ describe 'Unicameral' do
 end
 
 describe 'Bicameral' do
-  before { VCR.insert_cassette('Bicameral legislature') }
-  after { VCR.eject_cassette }
+  around { |test| VCR.use_cassette('Bicameral legislature', &test) }
 
   let(:page) { Page::Legislature.new(id: 'Q11010') }
   subject { page.legislature }
@@ -89,8 +87,7 @@ describe 'Bicameral' do
 end
 
 describe 'Lower' do
-  before { VCR.insert_cassette('Lower legislature') }
-  after { VCR.eject_cassette }
+  around { |test| VCR.use_cassette('Lower legislature', &test) }
 
   let(:page) { Page::Legislature.new(id: 'Q11005') }
   subject { page.legislature }
