@@ -1,3 +1,5 @@
+# Legislative Explorer
+
 This is a very rough and ready prototype for investigating legislative
 information in Wikidata.
 
