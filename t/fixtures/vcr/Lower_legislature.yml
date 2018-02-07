@@ -1,0 +1,222 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?legislature%20?legislatureLabel%20?jurisdiction%20?jurisdictionLabel%20?country%20?countryLabel%20?seats%20?part%20?partLabel%20WHERE%0A%7B%0A%20%20BIND(wd:Q11005%20AS%20?legislature)%0A%20%20OPTIONAL%20%7B%20?legislature%20wdt:P1342%20?seats%20%7D.%0A%20%20OPTIONAL%20%7B%20?legislature%20wdt:P1001%20?jurisdiction%20%7D.%0A%20%20OPTIONAL%20%7B%20?legislature%20wdt:P17%20?country%20%7D.%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 07 Feb 2018 04:21:33 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '318'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs2001
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 78834857, 60548116
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp2018 miss, cp2018 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=07-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        11 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=07-Feb-2018;Path=/;HttpOnly;secure;Expires=Sun, 11 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 121.44.141.17
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA71Ty07DMBC89yssc42aBCiHXLkgUQ4IISEhDm7sJgY/InvT
+        EFX5d5xnYwpISNCTPTvencnY2S8QwjkjFKME7R1wcEeMbeEzwoJl3AoCpWE4
+        8OCabJhoa6+l4ZbyFLhWn/F0KNWlAlPPthNlGQHbbgpiYFx7Fr04Q03QWjTM
+        lgLszOWGK8pVNjjti8h3PB3uGKiLroSdQRwc6jsiyp7IAYokDKuqWlb8jVMC
+        ZKlNFjIFHOrwPo6jaIWHzmYcMXyBL9b2ToLzuRfdxPMoisOnu/VDmjNJzihL
+        uSRi7mpqFhyY8bmD46tVdOzHu5E/z+DyiwTG6z2J2NEj9FXfpUgEUVknwNTv
+        M73RpWVIb9G1llIr+3PA/2LhUTmWolv3vqmW3+Z9Su1ubfo/ctF8AKTsXq83
+        BAAA
+    http_version: 
+  recorded_at: Wed, 07 Feb 2018 04:21:33 GMT
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?part%20?partLabel%20WHERE%0A%7B%0A%20%20wd:Q11005%20wdt:P527%20?part%20.%0A%20%20?part%20wdt:P31/wdt:P279*%20wd:Q10553309%20.%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 07 Feb 2018 04:21:35 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '90'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs2003
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 128589420, 71541141
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp2006 miss, cp2018 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=07-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        11 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=07-Feb-2018;Path=/;HttpOnly;secure;Expires=Sun, 11 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 121.44.141.17
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA6vmUlBQykhNTFFSsFKoBnKA3LLEomIQN1pBqSCxqERJB0L7
+        JCal5igpxAIV1eqAtBWlFpfmlBQj6UzKzEvJzEuH6gar5KoFAOnNvQVjAAAA
+    http_version: 
+  recorded_at: Wed, 07 Feb 2018 04:21:35 GMT
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?isa%20?isaLabel%20WHERE%0A%7B%0A%20%20wd:Q11005%20wdt:P31%20?isa%20.%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 07 Feb 2018 04:24:53 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '196'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs2002
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 128142625, 60028570
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp2006 miss, cp2018 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=07-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        11 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=07-Feb-2018;Path=/;HttpOnly;secure;Expires=Sun, 11 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 121.44.141.17
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA21QQQrCMBC89xUh59CAImrf4MWzeNjSpQ3GVJJNYyn5u21T
+        agVPw8zu7Aw7ZIzxBqHirGDDSEbagXUTvTGuHHAxwwVK1Jzdx5UoJpNF5zW5
+        ja9UplKmXrxJZOnGujQr1L9wkri3iouv3oH2adAQvQopQwh5UA9VAUHe2lqi
+        IUW9vO6Ph/PuxBdrFJuspehP4PupCw2mnm+j2WauXbQitKD/99FtQMua1jtc
+        Q2eM6SNZ/ADbT2LgSQEAAA==
+    http_version: 
+  recorded_at: Wed, 07 Feb 2018 04:24:53 GMT
+recorded_with: VCR 4.0.0
