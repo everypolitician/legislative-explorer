@@ -11,8 +11,8 @@ module Query
     def data
       h = Sparql.new(sparql).results.first
       Country.new(
-        h[:country],
-        h[:countryLabel],
+        h[:item],
+        h[:itemLabel],
         h[:population],
         Item.new(h[:executive], h[:executiveLabel]),
         Item.new(h[:head], h[:headLabel]),
@@ -30,14 +30,14 @@ module Query
 
     def sparql
       @sparql ||= <<~SPARQL
-        SELECT ?country ?countryLabel ?population ?executive ?executiveLabel ?legislature ?legislatureLabel ?head ?headLabel ?office ?officeLabel WHERE
+        SELECT ?item ?itemLabel ?population ?executive ?executiveLabel ?legislature ?legislatureLabel ?head ?headLabel ?office ?officeLabel WHERE
         {
-          BIND(wd:#{id} AS ?country)
-          OPTIONAL { ?country wdt:P1082 ?population }.
-          OPTIONAL { ?country wdt:P194 ?legislature }.
-          OPTIONAL { ?country wdt:P208 ?executive }.
-          OPTIONAL { ?country wdt:P6 ?head }.
-          OPTIONAL { ?country wdt:P1313 ?office }.
+          BIND(wd:#{id} AS ?item)
+          OPTIONAL { ?item wdt:P1082 ?population }.
+          OPTIONAL { ?item wdt:P194 ?legislature }.
+          OPTIONAL { ?item wdt:P208 ?executive }.
+          OPTIONAL { ?item wdt:P6 ?head }.
+          OPTIONAL { ?item wdt:P1313 ?office }.
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
       SPARQL
