@@ -8,7 +8,7 @@ module Query
       @id = id
     end
 
-    def data
+    def data # rubocop:disable Metrics/MethodLength
       results.map do |r|
         Place.new(
           r[:item],
@@ -16,7 +16,8 @@ module Query
           r[:population],
           Item.new(r[:legislature], r[:legislatureLabel]),
           Item.new(r[:office], r[:officeLabel]),
-          Item.new(r[:head], r[:headLabel])
+          Item.new(r[:head], r[:headLabel]),
+          Item.new(r[:executive], r[:executiveLabel])
         )
       end
     end
@@ -26,7 +27,7 @@ module Query
     attr_reader :id
 
     Item = Struct.new(:id, :name)
-    Place = Struct.new(:id, :name, :population, :legislature, :office, :head)
+    Place = Struct.new(:id, :name, :population, :legislature, :office, :head, :executive)
 
     def sparql
       raise 'SPARQL query missing'
