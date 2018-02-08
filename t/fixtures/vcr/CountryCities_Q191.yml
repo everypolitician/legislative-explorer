@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?population%20?office%20?officeLabel%20?head%20?headLabel%20?legislature%20?legislatureLabel%20WHERE%0A%7B%0A%20%20?item%20wdt:P31/wdt:P279*%20wd:Q515%20%3B%20wdt:P17%20wd:Q191%20%3B%20wdt:P1082%20?population%20.%0A%20%20FILTER%20(?population%20%3E%20250000)%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P6%20?head%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1313%20?office%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P194%20?legislature%20%7D%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(?population)%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 08 Feb 2018 03:54:13 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '324'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs2001
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 249739332, 72300847
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp2012 miss, cp2018 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=08-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Mon,
+        12 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=08-Feb-2018;Path=/;HttpOnly;secure;Expires=Mon, 12 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 121.44.141.17
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA7WTPW+DMBCG9/wKy11RMAWCxNY9Hap2qFR1uICBU41BxkBR
+        xH8vXyLQJFKGZDrew3fv47N93BBCEw4hJT45dqKTFaiil1+EouYpNca4hwMX
+        vcizvBSgMZO9yqIIA376mpcNXac4JwWPseiKS8X/yXEJ+e4YWqOnUrwohS4W
+        YAeUIcp4ghuTZIKcVw0p3eS8T9FSITVO+QpEOf5ItM5906zrelvjD4agYZup
+        2ORSo27MN8vzGJ0KW2NpNYGu/H5T4QuQ8dCay6XljCK6YgXiMs4HCIFSnjsu
+        hr227Inn3svd2MM+nhmzzM/X/XuQ8BSeQh5guja/Dcxxdsx1z7mmY7/32G3P
+        YS676veQ2afQZIpkEbl6COsHcq8btnOYbTnOZbsH3TKokLxAMXsOsR1f3ab9
+        Az9XQEgOBAAA
+    http_version:
+  recorded_at: Thu, 08 Feb 2018 03:54:13 GMT
+recorded_with: VCR 4.0.0
