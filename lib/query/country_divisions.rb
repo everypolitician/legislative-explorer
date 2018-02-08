@@ -1,32 +1,10 @@
 # frozen_string_literal: true
 
-require_rel '../sparql'
+require_rel 'places'
 
 module Query
-  class CountryDivisions
-    def initialize(id:)
-      @id = id
-    end
-
-    def data
-      division_results.map do |r|
-        Division.new(
-          r[:item],
-          r[:itemLabel],
-          r[:population],
-          Item.new(r[:legislature], r[:legislatureLabel]),
-          Item.new(r[:office], r[:officeLabel]),
-          Item.new(r[:head], r[:headLabel])
-        )
-      end
-    end
-
+  class CountryDivisions < Places
     private
-
-    attr_reader :id
-
-    Item = Struct.new(:id, :name)
-    Division = Struct.new(:id, :name, :population, :legislature, :office, :head)
 
     def sparql
       @sparql ||= <<~SPARQL
@@ -42,10 +20,6 @@ module Query
         }
         ORDER BY DESC(?population)
       SPARQL
-    end
-
-    def division_results
-      @res ||= Sparql.new(sparql).results
     end
   end
 end

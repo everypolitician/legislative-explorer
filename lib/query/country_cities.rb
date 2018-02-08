@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-require_rel '../sparql'
+require_rel 'places'
 
 module Query
-  class CountryCities < CountryDivisions
+  class CountryCities < Places
+    private
+
     def sparql
       @sparql ||= <<~SPARQL
         SELECT DISTINCT ?item ?itemLabel ?population ?office ?officeLabel ?head ?headLabel ?legislature ?legislatureLabel WHERE
