@@ -1,32 +1,14 @@
 # frozen_string_literal: true
 
-require_rel '../sparql'
+require_rel 'places'
 
 module Query
-  class CountryInfo
-    def initialize(id:)
-      @id = id
-    end
-
+  class CountryInfo < Places
     def data
-      h = Sparql.new(sparql).results.first
-      Country.new(
-        h[:item],
-        h[:itemLabel],
-        h[:population],
-        Item.new(h[:executive], h[:executiveLabel]),
-        Item.new(h[:head], h[:headLabel]),
-        Item.new(h[:office], h[:officeLabel]),
-        Item.new(h[:legislature], h[:legislatureLabel])
-      )
+      super.first
     end
 
     private
-
-    attr_reader :id
-
-    Item = Struct.new(:id, :name)
-    Country = Struct.new(:id, :name, :population, :executive, :head, :office, :legislature)
 
     def sparql
       @sparql ||= <<~SPARQL
