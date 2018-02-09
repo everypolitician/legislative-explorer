@@ -26,7 +26,17 @@ describe Query::CountryInfo do
     end
 
     it 'should know its legislature' do
-      subject.legislature.name.must_equal 'Riigikogu'
+      subject.legislatures.first.name.must_equal 'Riigikogu'
+    end
+  end
+
+  describe 'Germany (Q183)' do
+    around { |test| VCR.use_cassette('CountryInfo Q183', &test) }
+
+    subject { Query::CountryInfo.new(id: 'Q183').data }
+
+    it 'should have two legislatures' do
+      subject.legislatures.count.must_equal 2
     end
   end
 end
