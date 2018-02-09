@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_rel '../sparql'
-
 module Page
   class Home
     def initialize(countries:)
