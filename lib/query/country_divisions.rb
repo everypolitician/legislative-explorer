@@ -13,7 +13,7 @@ module Query
     def data
       division_results.map do |r|
         DivisionStruct.new(*r.values_at(:item, :population, :office, :head), legislatures(r[:item]))
-      end
+      end.uniq
     end
 
     private

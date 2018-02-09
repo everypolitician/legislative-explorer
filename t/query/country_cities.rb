@@ -38,6 +38,10 @@ describe Query::CountryCities do
     describe 'Los Angeles (Q65)' do
       subject { cities.find { |c| c.id == 'Q65' } }
 
+      it 'should only be listed once' do
+        cities.select { |c| c.id == 'Q65' }.count.must_equal 1
+      end
+
       it 'should have two legislatures' do
         subject.legislatures.count.must_equal 2
       end

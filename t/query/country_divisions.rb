@@ -34,6 +34,10 @@ describe Query::CountryDivisions do
     describe 'Canton of Glarus (Q11922)' do
       subject { divisions.find { |c| c.id == 'Q11922' } }
 
+      it 'should only be listed once' do
+        divisions.select { |c| c.id == 'Q11922' }.count.must_equal 1
+      end
+
       it 'should have two legislatures' do
         subject.legislatures.count.must_equal 2
       end
