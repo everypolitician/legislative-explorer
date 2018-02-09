@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_rel '../sparql'
+require_relative '../sparql'
 
 DivisionStruct = SelfAwareStruct.new(:me, :population, :legislature, :office, :head)
 

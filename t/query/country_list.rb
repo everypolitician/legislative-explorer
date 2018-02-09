@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require_rel '../../lib/query/country_list'
+require_relative '../../lib/query/country_list'
 
 describe Query::CountryList do
   around { |test| VCR.use_cassette('CountryList', &test) }

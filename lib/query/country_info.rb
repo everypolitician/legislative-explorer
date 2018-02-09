@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_rel '../sparql'
+require_relative '../sparql'
 
 CountryStruct = SelfAwareStruct.new(:me, :population, :executive, :head, :office, :legislature)
 

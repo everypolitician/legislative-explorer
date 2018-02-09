@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require_rel '../../lib/page/home'
+require_relative '../../lib/page/home'
 
 describe 'Homepage' do
   describe 'title' do
