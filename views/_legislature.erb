@@ -1,0 +1,5 @@
+<% if legislature %>
+  <a href="/legislature/<%= legislature.id %>"><%= legislature.name || '???' %></a>
+<% else %>
+  <i>unknown</i>
+<% end %>

@@ -15,11 +15,17 @@
       <% end %>
     </li>
 
-    <li>Legislature:
-      <% if place.legislature %>
-        <a href="/legislature/<%= place.legislature.id %>"><%= place.legislature.name || '???' %></a>
+    <li>
+      <% if place.legislatures.count > 1 %>
+        Legislatures:
+        <ul>
+          <% place.legislatures.each do |legislature| %>
+            <li><%= erb :_legislature, locals: { legislature: legislature } %></li>
+          <% end %>
+        </ul>
       <% else %>
-        <i>unknown</i>
+        Legislature:
+        <%= erb :_legislature, locals: { legislature: place.legislatures.first } %>
       <% end %>
     </li>
   </ul>
