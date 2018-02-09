@@ -2,7 +2,7 @@
 
 require_relative '../sparql'
 
-CountryStruct = SelfAwareStruct.new(:me, :population, :executive, :head, :office, :legislature)
+CountryStruct = SelfAwareStruct.new(:me, :population, :executive, :head, :office, :legislatures)
 
 module Query
   class CountryInfo
@@ -11,8 +11,8 @@ module Query
     end
 
     def data
-      h = Sparql.new(sparql).results.first
-      CountryStruct.new(*h.values_at(:country, :population, :executive, :head, :office, :legislature))
+      h = results.first
+      CountryStruct.new(*h.values_at(:country, :population, :executive, :head, :office), legislatures)
     end
 
     private
@@ -32,6 +32,14 @@ module Query
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
       SPARQL
+    end
+
+    def results
+      @results ||= Sparql.new(sparql).results
+    end
+
+    def legislatures
+      results.map { |i| i[:legislature] }
     end
   end
 end
