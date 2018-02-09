@@ -29,4 +29,18 @@ describe Query::CountryCities do
       end
     end
   end
+
+  describe 'United States of America (Q30)' do
+    around { |test| VCR.use_cassette('CountryCities Q30', &test) }
+
+    let(:cities) { Query::CountryCities.new(id: 'Q30').data }
+
+    describe 'Los Angeles (Q65)' do
+      subject { cities.find { |c| c.id == 'Q65' } }
+
+      it 'should have two legislatures' do
+        subject.legislatures.count.must_equal 2
+      end
+    end
+  end
 end

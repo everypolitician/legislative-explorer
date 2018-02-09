@@ -25,4 +25,18 @@ describe Query::CountryDivisions do
       end
     end
   end
+
+  describe 'Switzerland (Q39)' do
+    around { |test| VCR.use_cassette('CountryDivisions Q39', &test) }
+
+    let(:divisions) { Query::CountryDivisions.new(id: 'Q39').data }
+
+    describe 'Canton of Glarus (Q11922)' do
+      subject { divisions.find { |c| c.id == 'Q11922' } }
+
+      it 'should have two legislatures' do
+        subject.legislatures.count.must_equal 2
+      end
+    end
+  end
 end

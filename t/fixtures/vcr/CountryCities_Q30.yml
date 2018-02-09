@@ -1,0 +1,143 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?population%20?office%20?officeLabel%20?head%20?headLabel%20?legislature%20?legislatureLabel%20WHERE%0A%7B%0A%20%20?item%20wdt:P31/wdt:P279*%20wd:Q515%20%3B%20wdt:P17%20wd:Q30%20%3B%20wdt:P1082%20?population%20.%0A%20%20FILTER%20(?population%20%3E%20250000)%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P6%20?head%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1313%20?office%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P194%20?legislature%20%7D%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(?population)%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 09 Feb 2018 03:46:39 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '3225'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs2003
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 223118559, 76026938
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp2006 miss, cp2018 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=09-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Tue,
+        13 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=09-Feb-2018;Path=/;HttpOnly;secure;Expires=Tue, 13 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 121.44.141.17
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+    http_version: 
+  recorded_at: Fri, 09 Feb 2018 03:46:39 GMT
+recorded_with: VCR 4.0.0
