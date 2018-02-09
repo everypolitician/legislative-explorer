@@ -2,7 +2,7 @@
 
 require_relative '../sparql'
 
-DivisionStruct = SelfAwareStruct.new(:me, :population, :legislature, :office, :head)
+DivisionStruct = SelfAwareStruct.new(:me, :population, :office, :head, :legislatures)
 
 module Query
   class CountryDivisions
@@ -12,7 +12,7 @@ module Query
 
     def data
       division_results.map do |r|
-        DivisionStruct.new(*r.values_at(:item, :population, :legislature, :office, :head))
+        DivisionStruct.new(*r.values_at(:item, :population, :office, :head), legislatures(r[:item]))
       end
     end
 
@@ -38,6 +38,10 @@ module Query
 
     def division_results
       @res ||= Sparql.new(sparql).results
+    end
+
+    def legislatures(place_id)
+      division_results.select { |r| r[:item] == place_id }.map { |i| i[:legislature] }
     end
   end
 end
