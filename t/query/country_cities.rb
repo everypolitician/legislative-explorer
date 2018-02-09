@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require_rel '../../lib/query/country_cities'
+require_relative '../../lib/query/country_cities'
 
 describe Query::CountryCities do
   describe 'Estonia (Q191)' do

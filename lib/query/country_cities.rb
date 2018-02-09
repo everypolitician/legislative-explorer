@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_rel 'country_divisions'
+require_relative 'country_divisions'
 
 module Query
   class CountryCities < CountryDivisions
