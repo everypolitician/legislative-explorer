@@ -2,6 +2,8 @@
 
 require_rel '../sparql'
 
+DivisionStruct = SelfAwareStruct.new(:me, :population, :legislature, :office, :head)
+
 module Query
   class CountryDivisions
     def initialize(id:)
@@ -10,23 +12,13 @@ module Query
 
     def data
       division_results.map do |r|
-        Division.new(*r.values_at(:item, :population, :legislature, :office, :head))
+        DivisionStruct.new(*r.values_at(:item, :population, :legislature, :office, :head))
       end
     end
 
     private
 
     attr_reader :id
-
-    Division = Struct.new(:me, :population, :legislature, :office, :head) do
-      def id
-        me.id
-      end
-
-      def name
-        me.name
-      end
-    end
 
     def sparql
       @sparql ||= <<~SPARQL

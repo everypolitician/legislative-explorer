@@ -84,3 +84,21 @@ class Sparql
     attr_reader :datum
   end
 end
+
+# This is a bit of a nasty hack that's pushing the concept of a Struct
+# right to its limit. We might want to look into pushing this up to a
+# full-blown class, but for now it's an experiment whilst we see if it
+# has sufficient value first.
+#
+# Usage: treat like a normal Struct, except if one of the args is a
+# `LabelledItem` called :me, it has methods for descending into that
+# to avoid the ugliness of `country.country.name` etc.
+class SelfAwareStruct < Struct
+  def id
+    me.id
+  end
+
+  def name
+    me.name
+  end
+end

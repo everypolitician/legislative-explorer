@@ -2,6 +2,8 @@
 
 require_rel '../sparql'
 
+LegislatureStruct = SelfAwareStruct.new(:me, :type, :jurisdiction, :country, :seats, :chambers)
+
 module Page
   class Legislature
     def initialize(id:)
@@ -18,7 +20,7 @@ module Page
 
     def legislature
       h = Sparql.new(sparql).results.first
-      Legislature.new(*h.values_at(:legislature, :type, :jurisdiction, :country, :seats), chambers)
+      LegislatureStruct.new(*h.values_at(:legislature, :type, :jurisdiction, :country, :seats), chambers)
     end
 
     def type
@@ -42,16 +44,6 @@ module Page
     end
 
     private
-
-    Legislature = Struct.new(:me, :type, :jurisdiction, :country, :seats, :chambers) do
-      def id
-        me.id
-      end
-
-      def name
-        me.name
-      end
-    end
 
     def types
       @types ||= Sparql.new(type_sparql).results.map { |r| r[:isa].name }.to_set

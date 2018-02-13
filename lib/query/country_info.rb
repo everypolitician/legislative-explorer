@@ -2,6 +2,8 @@
 
 require_rel '../sparql'
 
+CountryStruct = SelfAwareStruct.new(:me, :population, :executive, :head, :office, :legislature)
+
 module Query
   class CountryInfo
     def initialize(id:)
@@ -10,22 +12,12 @@ module Query
 
     def data
       h = Sparql.new(sparql).results.first
-      Country.new(*h.values_at(:country, :population, :executive, :head, :office, :legislature))
+      CountryStruct.new(*h.values_at(:country, :population, :executive, :head, :office, :legislature))
     end
 
     private
 
     attr_reader :id
-
-    Country = Struct.new(:me, :population, :executive, :head, :office, :legislature) do
-      def id
-        me.id
-      end
-
-      def name
-        me.name
-      end
-    end
 
     def sparql
       @sparql ||= <<~SPARQL
