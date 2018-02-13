@@ -11,13 +11,13 @@ module Query
     def data
       h = Sparql.new(sparql).results.first
       Country.new(
-        h[:country],
-        h[:countryLabel],
+        h[:country].id,
+        h[:country].name,
         h[:population],
-        Item.new(h[:executive], h[:executiveLabel]),
-        Item.new(h[:head], h[:headLabel]),
-        Item.new(h[:office], h[:officeLabel]),
-        Item.new(h[:legislature], h[:legislatureLabel])
+        h[:executive],
+        h[:head],
+        h[:office],
+        h[:legislature]
       )
     end
 
@@ -25,7 +25,6 @@ module Query
 
     attr_reader :id
 
-    Item = Struct.new(:id, :name)
     Country = Struct.new(:id, :name, :population, :executive, :head, :office, :legislature)
 
     def sparql

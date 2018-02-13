@@ -10,11 +10,17 @@ class Sparql
     @query = query
   end
 
+  # rewrite foo+fooLabel pairs as foo: { id: X, name: Y }
   def results
-    bindings.map { |row| Row.new(row).to_h }
+    ungrouped_results.map do |r|
+      labelled = r.keys.select { |field| r.key?("#{field}Label".to_sym) }
+      labelled.map { |field| [field, LabelledItem.new(r.delete(field), r.delete("#{field}Label".to_sym))] }.to_h.merge(r)
+    end
   end
 
   private
+
+  LabelledItem = Struct.new(:id, :name)
 
   attr_reader :query
 
@@ -30,6 +36,10 @@ class Sparql
 
   def bindings
     raw_json[:results][:bindings]
+  end
+
+  def ungrouped_results
+    bindings.map { |row| Row.new(row).to_h }
   end
 
   # Rows are returned from the API in the format:
