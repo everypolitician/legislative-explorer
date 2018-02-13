@@ -10,22 +10,22 @@ module Query
 
     def data
       h = Sparql.new(sparql).results.first
-      Country.new(
-        h[:country].id,
-        h[:country].name,
-        h[:population],
-        h[:executive],
-        h[:head],
-        h[:office],
-        h[:legislature]
-      )
+      Country.new(*h.values_at(:country, :population, :executive, :head, :office, :legislature))
     end
 
     private
 
     attr_reader :id
 
-    Country = Struct.new(:id, :name, :population, :executive, :head, :office, :legislature)
+    Country = Struct.new(:me, :population, :executive, :head, :office, :legislature) do
+      def id
+        me.id
+      end
+
+      def name
+        me.name
+      end
+    end
 
     def sparql
       @sparql ||= <<~SPARQL
