@@ -18,15 +18,7 @@ module Page
 
     def legislature
       h = Sparql.new(sparql).results.first
-      Legislature.new(
-        h[:legislature].id,
-        h[:legislature].name,
-        h[:type],
-        h[:jurisdiction],
-        h[:country],
-        h[:seats],
-        chambers
-      )
+      Legislature.new(*h.values_at(:legislature, :type, :jurisdiction, :country, :seats), chambers)
     end
 
     def type
@@ -51,7 +43,15 @@ module Page
 
     private
 
-    Legislature = Struct.new(:id, :name, :type, :jurisdiction, :country, :seats, :chambers)
+    Legislature = Struct.new(:me, :type, :jurisdiction, :country, :seats, :chambers) do
+      def id
+        me.id
+      end
+
+      def name
+        me.name
+      end
+    end
 
     def types
       @types ||= Sparql.new(type_sparql).results.map { |r| r[:isa].name }.to_set
