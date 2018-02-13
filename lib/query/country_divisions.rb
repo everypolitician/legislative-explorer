@@ -11,12 +11,12 @@ module Query
     def data
       division_results.map do |r|
         Division.new(
-          r[:item],
-          r[:itemLabel],
+          r[:item].id,
+          r[:item].name,
           r[:population],
-          Item.new(r[:legislature], r[:legislatureLabel]),
-          Item.new(r[:office], r[:officeLabel]),
-          Item.new(r[:head], r[:headLabel])
+          r[:legislature],
+          r[:office],
+          r[:head]
         )
       end
     end
@@ -25,7 +25,6 @@ module Query
 
     attr_reader :id
 
-    Item = Struct.new(:id, :name)
     Division = Struct.new(:id, :name, :population, :legislature, :office, :head)
 
     def sparql

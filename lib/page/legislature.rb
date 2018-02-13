@@ -19,22 +19,22 @@ module Page
     def legislature
       h = Sparql.new(sparql).results.first
       Legislature.new(
-        h[:legislature],
-        h[:legislatureLabel],
-        Item.new(h[:type], h[:typeLabel]),
-        Item.new(h[:jurisdiction], h[:jurisdictionLabel]),
-        Item.new(h[:country], h[:countryLabel]),
+        h[:legislature].id,
+        h[:legislature].name,
+        h[:type],
+        h[:jurisdiction],
+        h[:country],
         h[:seats],
         chambers
       )
     end
 
     def type
-      @type ||= Sparql.new(type_sparql).results.find { |h| h[:isaLabel].include? 'cameral legislature' }[:isaLabel]
+      @type ||= Sparql.new(type_sparql).results.map { |h| h[:isa].name }.find { |name| name.include? 'cameral legislature' }
     end
 
     def chambers
-      @chambers ||= Sparql.new(parts_sparql).results.map { |h| Item.new(h[:part], h[:partLabel]) }
+      @chambers ||= Sparql.new(parts_sparql).results.map { |r| r[:part] }
     end
 
     def unicameral?
@@ -51,11 +51,10 @@ module Page
 
     private
 
-    Item = Struct.new(:id, :name)
     Legislature = Struct.new(:id, :name, :type, :jurisdiction, :country, :seats, :chambers)
 
     def types
-      @types ||= Sparql.new(type_sparql).results.map { |r| r[:isaLabel] }.to_set
+      @types ||= Sparql.new(type_sparql).results.map { |r| r[:isa].name }.to_set
     end
 
     def type_sparql

@@ -5,12 +5,10 @@ require_rel '../sparql'
 module Query
   class CountryList
     def data
-      Sparql.new(sparql).results.map { |h| Country.new(h[:item], h[:itemLabel]) }
+      Sparql.new(sparql).results.map { |r| r[:item] }
     end
 
     private
-
-    Country = Struct.new(:id, :name)
 
     def sparql
       @sparql ||= <<~SPARQL
