@@ -11,9 +11,7 @@ class Sparql
   end
 
   def results
-    bindings.map do |row|
-      row.map { |field, value| [field, Datum.new(value).to_s] }.to_h
-    end
+    bindings.map { |row| Row.new(row).to_h }
   end
 
   private
@@ -32,6 +30,24 @@ class Sparql
 
   def bindings
     raw_json[:results][:bindings]
+  end
+
+  # Rows are returned from the API in the format:
+  # {:item=>{:type=>"uri", :value=>"http://www.wikidata.org/entity/Q222"},
+  #  :itemLabel=>{:"xml:lang"=>"en", :type=>"literal", :value=>"Albania"}}
+  class Row
+    def initialize(hash)
+      @data = hash
+    end
+
+    def to_h
+      # TODO: we shouldn't be always casting Datum to to_s
+      data.map { |field, value| [field, Datum.new(value).to_s] }.to_h
+    end
+
+    private
+
+    attr_reader :data
   end
 
   # https://www.wikidata.org/wiki/Special:ListDatatypes
