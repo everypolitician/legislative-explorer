@@ -7,9 +7,7 @@ require 'require_all'
 require 'sass'
 require 'sinatra'
 
-require_relative './lib/html_helper'
-require_rel './lib/page'
-require_rel './lib/query'
+require_all 'lib'
 
 class Integer
   def commify
