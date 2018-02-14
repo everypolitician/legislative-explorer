@@ -6,7 +6,7 @@ require 'reek/rake/task'
 
 Rake::TestTask.new do |t|
   t.verbose = true
-  t.description = 'Run all tests (slow)'
+  t.description = 'Run all tests'
   t.test_files = FileList['t/**/*.rb']
   t.libs << 't'
 end
