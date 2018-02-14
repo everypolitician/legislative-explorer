@@ -5,6 +5,7 @@ require 'rubocop/rake_task'
 require 'reek/rake/task'
 
 Rake::TestTask.new do |t|
+  t.warning = false
   t.verbose = true
   t.description = 'Run all tests'
   t.test_files = FileList['t/**/*.rb']
