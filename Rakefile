@@ -20,7 +20,6 @@ Reek::Rake::Task.new do |t|
 end
 
 # Check for known vulnerabilities in Gemfile.lock
-
 require 'bundler/audit/task'
 Bundler::Audit::Task.new
 
