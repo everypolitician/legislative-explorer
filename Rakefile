@@ -5,32 +5,6 @@ require 'rubocop/rake_task'
 require 'reek/rake/task'
 
 Rake::TestTask.new do |t|
-  t.name = 'test:page'
-  t.warning = true
-  t.description = 'Run "Page" tests'
-  t.test_files = FileList['t/page/*.rb', 't/helpers/*.rb']
-  t.libs << 't'
-end
-
-Rake::TestTask.new do |t|
-  t.name = 'test:web'
-  t.warning = false
-  t.verbose = true
-  t.description = 'Run "Web" tests (slow)'
-  t.test_files = FileList['t/web/**/*.rb']
-  t.libs << 't'
-end
-
-Rake::TestTask.new do |t|
-  t.name = 'test:extensions'
-  t.warning = false
-  t.verbose = true
-  t.description = 'Run "Everypolitician extensions" tests'
-  t.test_files = FileList['t/everypolitician_extensions/**/*.rb']
-  t.libs << 't'
-end
-
-Rake::TestTask.new do |t|
   t.verbose = true
   t.description = 'Run all tests (slow)'
   t.test_files = FileList['t/**/*.rb']
