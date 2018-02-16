@@ -39,7 +39,7 @@ module Query
     end
 
     def legislatures
-      results.map { |i| i[:legislature] }
+      results.map { |i| i[:legislature] }.uniq
     end
   end
 end
