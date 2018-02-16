@@ -39,4 +39,14 @@ describe Query::CountryInfo do
       subject.legislatures.count.must_equal 2
     end
   end
+
+  describe 'Nepal (Q837)' do
+    around { |test| VCR.use_cassette('CountryInfo Q837', &test) }
+
+    subject { Query::CountryInfo.new(id: 'Q837').data }
+
+    it 'should not show an abolished legislature' do
+      subject.legislatures.map(&:id).wont_include 'Q16057514'
+    end
+  end
 end

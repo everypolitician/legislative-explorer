@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?country%20?countryLabel%20?population%20?executive%20?executiveLabel%20?legislature%20?legislatureLabel%20?head%20?headLabel%20?office%20?officeLabel%20WHERE%0A%7B%0A%20%20BIND(wd:Q183%20AS%20?country)%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P1082%20?population%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P194%20?legislature%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P208%20?executive%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P6%20?head%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P1313%20?office%20%7D.%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0A
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?country%20?countryLabel%20?population%20?executive%20?executiveLabel%20?legislature%20?legislatureLabel%20?head%20?headLabel%20?office%20?officeLabel%20WHERE%0A%7B%0A%20%20BIND(wd:Q183%20AS%20?country)%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P1082%20?population%20%7D.%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20?country%20wdt:P194%20?legislature%0A%20%20%20%20MINUS%20%7B%20?legislature%20wdt:P576%20?legislatureEnd%20%7D%0A%20%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P208%20?executive%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P6%20?head%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P1313%20?office%20%7D.%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0A
     body:
       encoding: US-ASCII
       string: ''
@@ -21,11 +21,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 09 Feb 2018 03:41:30 GMT
+      - Wed, 21 Feb 2018 07:17:05 GMT
       Content-Type:
       - application/sparql-results+json
       Content-Length:
-      - '429'
+      - '428'
       Connection:
       - keep-alive
       Server:
@@ -41,41 +41,41 @@ http_interactions:
       Vary:
       - Accept, Accept-Encoding
       X-Varnish:
-      - 174037535, 59591365
+      - 93993446, 252228747
       Via:
       - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
       Age:
       - '0'
       X-Cache:
-      - cp2018 miss, cp2018 miss
+      - cp2018 miss, cp2006 miss
       X-Cache-Status:
       - miss
       Strict-Transport-Security:
       - max-age=106384710; includeSubDomains; preload
       Set-Cookie:
-      - WMF-Last-Access-Global=09-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Tue,
-        13 Mar 2018 00:00:00 GMT
-      - WMF-Last-Access=09-Feb-2018;Path=/;HttpOnly;secure;Expires=Tue, 13 Mar 2018
+      - WMF-Last-Access-Global=21-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        25 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=21-Feb-2018;Path=/;HttpOnly;secure;Expires=Sun, 25 Mar 2018
         00:00:00 GMT
       X-Analytics:
       - https=1;nocookies=1
       X-Client-Ip:
-      - 121.44.141.17
+      - 121.44.11.137
       Accept-Ranges:
       - bytes
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAA+1Wy26CQBTd+xUTujUyKIq4a5vUjS6abpo0XYxwhYnDQIYB
-        JI3/Xh6WR1GTJthF64q5j7nnzJ3LyXwMEFJcILaCFugjMzIzJiLMzTekWH7E
-        pUiVYbVckQ2w3A78IGJEUp/nFuzBiiSNoWVUyQwcGmbZkYBvZpVSkDh+K6e/
-        3VIL6lUZQO8Z0cMwpy4gjJgMG+w3lNuUO8cTlE5Un6RKLLwyDSB3KZGgyrD2
-        x4RFZcCVMlioapIko4TuqE0kGfnCUYFLKlP1WZtPlOO+w1eBZm/aePn2CrNZ
-        elIUHWOsqa/r1YvlgkfubLCoR1iTWLWZUQmiHatJz7WxOdYx7jJrXkTvrdBn
-        2mTexaxno3dEjKcmPnEB7YnuCW06M7pIxwntG0s3DWzgWRev9Ru2UfceWzDC
-        nQIA+M/HZgnCIzy9cINXgX0COw+ipR+D4F7WAuRv0VkyHfHomc5DxG0IBZGn
-        x+oqmPfcAUbQGsQuK35myK7a/EeXcAsY88Wp5g9KPjc5/U05neqGadzk9Can
-        f0BOJXEusvjnylq+aAeHTxR4C3qPCwAA
+        H4sIAAAAAAAAA+1WS2+CQBC++ys29GpkURTx1japFz00vTRpelhhxI3LQpYF
+        JMb/Xh6WR1GTJnBpPbHzYL5vZ4YvHAcIKTsgtoIW6JgaqRkREWTmB1IsL+RS
+        JMqwPK7IBlhm+54fMiKpxzMLDmCFkkbQMMpkBg4N0uxQwA+zTMlJnJ+l09tu
+        qQXVqQigz5ToaZhRFxCETAY19hvKbcqd8w0KJ6puUibmXpn4kLmUUFBlWPkj
+        wsIisJPSX6hqHMejmO6pTSQZecJRgUsqE/VVm0+U83un7wKN63YOqM+0ybyN
+        WZtHEzKrUMLWq0/yumOMNfV9vXqzduCSBxss6hJW51a+zKgE0YxVvOfa2Bzr
+        GLeZVbvReS8wnpr4wgCaG90R2nRmtJHOG9o1lm4a2MCzNl7jM2yiHly2YIQ7
+        OQDw349wCcIlPLkxwV5gX8DOgmjpRSC4m7YAeVt0lUxLPDqm8xRyGwJB5OW1
+        6gXzkTvACFqD2KfFryxZr81/3hFuAWOeuNT8QcHnL8rpVDdM4y6ndzm9y2mP
+        ciqJc5PFP1fW4o92cPoCujCH4I8LAAA=
     http_version: 
-  recorded_at: Fri, 09 Feb 2018 03:41:30 GMT
+  recorded_at: Wed, 21 Feb 2018 07:17:05 GMT
 recorded_with: VCR 4.0.0
