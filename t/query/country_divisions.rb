@@ -43,6 +43,20 @@ describe Query::CountryDivisions do
       end
     end
   end
+
+  describe 'Australia (Q408)' do
+    around { |test| VCR.use_cassette('CountryDivisions Q408', &test) }
+
+    let(:divisions) { Query::CountryDivisions.new(id: 'Q408').data }
+
+    describe 'Norfolk Island (Q31057)' do
+      subject { divisions.find { |c| c.id == 'Q31057' } }
+
+      it 'should not list an abolished legislature' do
+        subject.legislatures.map(&:id).wont_include 'Q7051064'
+      end
+    end
+  end
 end
 
 describe Query::CountryDivisions do

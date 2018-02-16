@@ -29,7 +29,10 @@ module Query
           OPTIONAL { ?item wdt:P1082 ?population }
           OPTIONAL { ?item wdt:P6 ?head }
           OPTIONAL { ?item wdt:P1313 ?office }
-          OPTIONAL { ?item wdt:P194 ?legislature }
+          OPTIONAL {
+            ?item wdt:P194 ?legislature
+            MINUS { ?legislature wdt:P576 ?legislatureEnd }
+          }
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
         ORDER BY DESC(?population) ?itemLabel
