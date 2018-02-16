@@ -47,4 +47,18 @@ describe Query::CountryCities do
       end
     end
   end
+
+  describe 'Israel (Q801)' do
+    around { |test| VCR.use_cassette('CountryCities Q801', &test) }
+
+    let(:cities) { Query::CountryCities.new(id: 'Q801').data }
+
+    describe 'Jerusalem (Q1218)' do
+      subject { cities.find { |c| c.id == 'Q1218' } }
+
+      it 'should have one legislature' do
+        subject.legislatures.count.must_equal 1
+      end
+    end
+  end
 end
