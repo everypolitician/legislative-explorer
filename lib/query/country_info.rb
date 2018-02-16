@@ -25,7 +25,10 @@ module Query
         {
           BIND(wd:#{id} AS ?country)
           OPTIONAL { ?country wdt:P1082 ?population }.
-          OPTIONAL { ?country wdt:P194 ?legislature }.
+          OPTIONAL {
+            ?country wdt:P194 ?legislature
+            MINUS { ?legislature wdt:P576 ?legislatureEnd }
+          }.
           OPTIONAL { ?country wdt:P208 ?executive }.
           OPTIONAL { ?country wdt:P6 ?head }.
           OPTIONAL { ?country wdt:P1313 ?office }.
@@ -39,7 +42,7 @@ module Query
     end
 
     def legislatures
-      results.map { |i| i[:legislature] }.uniq
+      results.map { |i| i[:legislature] }.compact.uniq
     end
   end
 end
