@@ -42,8 +42,8 @@ describe Query::CountryCities do
         cities.select { |c| c.id == 'Q65' }.count.must_equal 1
       end
 
-      it 'should have two legislatures' do
-        subject.legislatures.count.must_equal 2
+      it 'should not list an abolished legislature' do
+        subject.legislatures.map(&:id).wont_include 'Q6682043'
       end
     end
   end

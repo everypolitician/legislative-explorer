@@ -41,7 +41,7 @@ module Query
     end
 
     def legislatures(place_id)
-      division_results.select { |r| r[:item] == place_id }.map { |i| i[:legislature] }.uniq
+      division_results.select { |r| r[:item] == place_id }.map { |i| i[:legislature] }.compact.uniq
     end
   end
 end
