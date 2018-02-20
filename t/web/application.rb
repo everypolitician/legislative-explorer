@@ -4,7 +4,7 @@ require 'test_helper'
 require_relative '../../app'
 
 describe 'Basic web requests' do
-  around { |test| VCR.use_cassette('Basic web requests', &test) }
+  around { |test| VCR.use_cassette('Basic web requests', record: :new_episodes, &test) }
 
   it 'should get the home page successfully' do
     get '/'
