@@ -1,5 +1,5 @@
 {
-  "name":"viewer-sinatra",
+  "name":"legislative-explorer",
   "scripts":{},
   "env":{
     "LANG":{
