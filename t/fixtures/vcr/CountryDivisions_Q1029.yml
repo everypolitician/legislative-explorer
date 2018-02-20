@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?population%20?office%20?officeLabel%20?head%20?headLabel%20?legislature%20?legislatureLabel%20WHERE%0A%7B%0A%20%20?item%20wdt:P31/wdt:P279*%20wd:Q10864048%20%3B%20wdt:P17%20wd:Q1029%20.%0A%20%20FILTER%20NOT%20EXISTS%20%7B%20?item%20wdt:P576%20%5B%5D%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1082%20?population%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P6%20?head%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1313%20?office%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P194%20?legislature%20%7D%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(?population)%20?itemLabel%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin16.7.0 x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 20 Feb 2018 05:55:07 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '356'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs1003
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 85726887, 89574995, 83986642
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp1061 pass, cp3007 miss, cp3008 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=20-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sat,
+        24 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=20-Feb-2018;Path=/;HttpOnly;secure;Expires=Sat, 24 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 94.173.239.224
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA8WWUU+DMBDH3/cpmj6TMdkGbK+aGBM1Gn3S+HDIjV0sLYEy
+        3JZ9d8tANo2+tk/lf9z1/j8uod2PGONrhJSzJdsbYeQGyqqVr4yTxpx73XoL
+        CYpWFKqoBWhSslVqtaJ3PD0Nacdd+3UICsyoMsV1ib9kl8LejIeD17oqsaqF
+        rs6MJSRTkllvrguy3uSQdQzpbYFtiNclce8U34CouxdrrYul7zdNM27og1LQ
+        MFZl5qPUpLf+4ywM59OY96UH77xZb/VHx89cLAXI7Lg5yvOmgxlhiksQfxu6
+        hESxKxQZpIo9lGpD0nzW7/6jzoUF6CC0CH0NO3AJO4sswt7INeQJSHRFHAZB
+        tAgsEt+BpHdnA55Gi3AeW8Utaq2cTndmEfce8vYgcMq7sMlLUFUucePJhUXc
+        J7UCh9OdzKPY5t/5GTU6ne3UIuyLOYhwR/9Ot7uGjQ5fpk2OtB8KAAA=
+    http_version: 
+  recorded_at: Tue, 20 Feb 2018 05:55:13 GMT
+recorded_with: VCR 4.0.0

@@ -44,3 +44,17 @@ describe Query::CountryDivisions do
     end
   end
 end
+
+describe Query::CountryDivisions do
+  describe 'Mozambique (Q1029)' do
+    around { |test| VCR.use_cassette('CountryDivisions Q1029', &test) }
+
+    let(:names) { Query::CountryDivisions.new(id: 'Q1029').data.map(&:name) }
+
+    it 'should list places of equal population alphabetically' do
+      cabo = names.find_index { |name| name == 'Cabo Delgado Province' }
+      gaza = names.find_index { |name| name == 'Gaza Province' }
+      cabo.must_be :<, gaza
+    end
+  end
+end
