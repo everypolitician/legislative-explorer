@@ -32,7 +32,7 @@ module Query
           OPTIONAL { ?item wdt:P194 ?legislature }
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
-        ORDER BY DESC(?population)
+        ORDER BY DESC(?population) ?itemLabel
       SPARQL
     end
 
