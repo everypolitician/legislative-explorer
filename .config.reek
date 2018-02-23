@@ -1,3 +1,9 @@
 ---
 IrresponsibleModule:
   enabled: false
+UtilityFunction:
+  exclude:
+  - HTMLHelper#unescape_uri
+FeatureEnvy:
+  exclude:
+  - Query::CountryDivisions#legislatures # TODO: fix this later
