@@ -21,13 +21,15 @@ module Query
 
     def sparql
       @sparql ||= <<~SPARQL
-        SELECT ?country ?countryLabel ?population ?executive ?executiveLabel ?legislature ?legislatureLabel ?head ?headLabel ?office ?officeLabel WHERE
+        SELECT ?country ?countryLabel ?population ?executive ?executiveLabel ?legislature ?legislatureLabel ?legislature_applies_to_matches ?head ?headLabel ?office ?officeLabel WHERE
         {
           BIND(wd:#{id} AS ?country)
           OPTIONAL { ?country wdt:P1082 ?population }.
           OPTIONAL {
             ?country wdt:P194 ?legislature
             MINUS { ?legislature wdt:P576 ?legislatureEnd }
+            OPTIONAL { ?legislature wdt:P1001 ?legislature_applies_to_jurisdiction }
+            BIND((BOUND(?legislature_applies_to_jurisdiction) && ?legislature_applies_to_jurisdiction = ?country) AS ?legislature_applies_to_matches)
           }.
           OPTIONAL { ?country wdt:P208 ?executive }.
           OPTIONAL { ?country wdt:P6 ?head }.
@@ -41,8 +43,9 @@ module Query
       @results ||= Sparql.new(sparql).results
     end
 
+    LegislatureStruct = SelfAwareStruct.new(:me, :applies_to_matches?)
     def legislatures
-      results.map { |i| i[:legislature] }.compact.uniq
+      results.map { |i| LegislatureStruct.new(i[:legislature], i[:legislature_applies_to_matches]) if i[:legislature] }.compact.uniq
     end
   end
 end

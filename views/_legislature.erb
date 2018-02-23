@@ -1,6 +1,6 @@
 <% if legislature %>
   <a href="/legislature/<%= legislature.id %>"><%= legislature.name || '???' %></a>
-  <% if legislature.respond_to?(:applies_to_matches?) && !legislature.applies_to_matches? %>
+  <% unless legislature.applies_to_matches? %>
     <sup>No matching <em>Applies to Jurisduction (P1001)</em></sup>
   <% end %>
 <% else %>
