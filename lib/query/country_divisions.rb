@@ -12,7 +12,7 @@ module Query
 
     def data
       division_results.map do |r|
-        DivisionStruct.new(*r.values_at(:item, :population, :office, :head), legislatures(r[:item]))
+        DivisionStruct.new(*r.values_at(:item, :population, :office, :head), legislatures[r[:item]])
       end.uniq
     end
 
@@ -43,8 +43,11 @@ module Query
       @res ||= Sparql.new(sparql).results
     end
 
-    def legislatures(place_id)
-      division_results.select { |r| r[:item] == place_id }.map { |i| i[:legislature] }.compact.uniq
+    def legislatures
+      division_results.group_by { |result| result[:item] }.map do |item, rows|
+        legislatures = rows.map { |row| row[:legislature] }.uniq.compact
+        [item, legislatures]
+      end.to_h
     end
   end
 end
