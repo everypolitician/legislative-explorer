@@ -43,9 +43,10 @@ module Query
       @res ||= Sparql.new(sparql).results
     end
 
+    LegislatureStruct = SelfAwareStruct.new(:me)
     def legislatures
       division_results.group_by { |result| result[:item] }.map do |item, rows|
-        legislatures = rows.map { |row| row[:legislature] }.uniq.compact
+        legislatures = rows.select { |row| row[:legislature] }.map { |row| LegislatureStruct.new(row[:legislature]) }.uniq.compact
         [item, legislatures]
       end.to_h
     end
