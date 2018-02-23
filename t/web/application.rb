@@ -21,3 +21,12 @@ describe 'Basic web requests' do
     last_response.status.must_equal 200
   end
 end
+
+describe 'Country pages' do
+  around { |test| VCR.use_cassette('Country pages', &test) }
+
+  it 'should show missing P1001 Applies To statements' do
+    get '/country/Q155' # Brazil
+    last_response.body.must_include 'No matching <em>Applies to Jurisduction (P1001)</em>'
+  end
+end

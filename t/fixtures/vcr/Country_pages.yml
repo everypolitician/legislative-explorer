@@ -1,0 +1,295 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?country%20?countryLabel%20?population%20?executive%20?executiveLabel%20?legislature%20?legislatureLabel%20?head%20?headLabel%20?office%20?officeLabel%20WHERE%0A%7B%0A%20%20BIND(wd:Q155%20AS%20?country)%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P1082%20?population%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P194%20?legislature%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P208%20?executive%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P6%20?head%20%7D.%0A%20%20OPTIONAL%20%7B%20?country%20wdt:P1313%20?office%20%7D.%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 23 Feb 2018 04:47:24 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '408'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs2003
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 170573622, 185163575
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp2018 miss, cp2006 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=23-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Tue,
+        27 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=23-Feb-2018;Path=/;HttpOnly;secure;Expires=Tue, 27 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 125.255.45.164
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA7VUTW+DMAy991dE7FoVKB8VPW7SdmmnTdth0rRDCi6NFhIU
+        ArSr+O8LlPEx2kmT6Cl5tuP3nDg+ThDSdoADDS3RUQEFMyySEr4jzecpk+Kg
+        TZvtCm+AljjmcUqxJJyVCPbgp5Jk0ANNMIWQJCo6FfALNiGViHptjHy7JT60
+        u5MDfSihxbSULiBJqUw66jeEBYSFdQUnI2oraQIrqzzEUJq0VBBt2tozTNOT
+        YydlvNT1PM9nOfkkAZZ4xkWoA5NEHvRn03G0+lzxk6B7N32+8njD2U1tVUnn
+        hmHqb+vVi7+DCN8E4JMI066w5jAlEkTf14pWeSzX9OZnpHVfYuy78GzP9bwh
+        Z9scYzM6tm04ljmk7Lf0SGy2azmWNSSru3T04syFu3CMIV/vK/ZZ9xFdUszC
+        igDY/1vnVuAvQv94w6uw3kNQOtEDz0CwSN0A4lt0SctgfIys5rH6ukrOHWeh
+        mjBJLSY5J6adVyOrWBM1BSh6hQjEpZ67CvGTKpkE59+gWovTAJ4U30QeXXc+
+        BgAA
+    http_version:
+  recorded_at: Fri, 23 Feb 2018 04:47:24 GMT
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?population%20?office%20?officeLabel%20?head%20?headLabel%20?legislature%20?legislatureLabel%20?legislature_applies_to_matches%20WHERE%0A%7B%0A%20%20?item%20wdt:P31/wdt:P279*%20wd:Q10864048%20%3B%20wdt:P17%20wd:Q155%20.%0A%20%20FILTER%20NOT%20EXISTS%20%7B%20?item%20wdt:P576%20%5B%5D%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1082%20?population%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P6%20?head%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1313%20?office%20%7D%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20?item%20wdt:P194%20?legislature%0A%20%20%20%20OPTIONAL%20%7B%20?legislature%20wdt:P1001%20?legislature_applies_to_jurisdiction%20%7D%0A%20%20%20%20BIND((BOUND(?legislature_applies_to_jurisdiction)%20%26%26%20?legislature_applies_to_jurisdiction%20=%20?item)%20AS%20?legislature_applies_to_matches)%0A%20%20%7D%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(?population)%20?itemLabel%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 23 Feb 2018 04:47:26 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '1830'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs2003
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 170129155, 264844170
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp2018 miss, cp2006 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=23-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Tue,
+        27 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=23-Feb-2018;Path=/;HttpOnly;secure;Expires=Tue, 27 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 125.255.45.164
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA+2dz2/bNhTH7/0riOwaNBQp/uotdZZsQTJkSdAOGIqCsRmb
+        qyR6lJSsKfrHdDvt0NN22tX/2ChbTZPFjrNWogSEJ1uyTfJJ5EffR75Hv3sC
+        wMZEydEGeAbeuQN3eCFtXh3+DDZ0odKNzcXrgTxTSXUwNdMykYU2WXVkzs/1
+        UH1+d/21ean16/XJRI117n5cWvWfw2VfeS2n00Sr/HVhXqeyGE6Ua9gr18r3
+        m1W7rcrLpMhvNP1MZyOdjevmL06C2ozrb81PFW+nqjq1UVq9sfn5/IVMysUH
+        k6KYPtvaury8fHqp3+iRLORTY8dbKit08Xbrx4iRjfp37zdv1rSw5HZ1v6XJ
+        s0Rm43nJKrtZ43VLEvdjK5PlrTmZ/WHAkSwTc7fSGzfkdq1Vm6+Lv2kPnluC
+        IIy2fjo8OHEXNpXfjNRQp7frf1jb4hhigmF8t2V152j80mMECVxVXSvXf2wu
+        lM2MvVvp7dHTkIWCxrHAyytrxb696qORAdvJ8E2qs7s13xy5TVsbc8gZhvdW
+        2orVB3X5+kKB7TxX6VnyFphzcN9oW8enrxiBZ8YkSn6BHYV1bz619MmivS3j
+        D4sICo8APNSZzEHVTXXePwQiyKm7IFFAYGMWktghkFGPDNx15snMQXBHutEs
+        wZFOXWNcPV5hGCEUY855f2h4/9ALPFw8w6IYcY88PNYGjBTYl5nStoeiMKIU
+        EyFoIGJzFkJnIsM+ZeFBqa/ANReP1JUTRn5xSAl3Vov+0HDdwAs8XPAQxssU
+        fWs8fC4nWvYQgwRBLLA/35gSVolRrxw80HlRDY29mod5dbDihrRFRkpQDD2S
+        8bjUYGByJxNHJgcnMitM7peMgmK8dBKqKzKuuOMBiDUQoVcgVs+pPeue28r1
+        UHBSJj2EI4wo4xAGjdgkCaGgSHgk4b7JZ3+C7y9cJ5O2MK7l3jGIcM8E4pqB
+        F5BY+8yEM49I3DN69qGHs4eUYchjHjDYnApmhDEReaTgobRDk2nnI1udJKYD
+        Kcjx/2bgw0x7UPGPXNrFPqXddiqvTCZ7SDJ3JSJKWSBZcxZGEYHMI8gWnUtn
+        Bhwqp2Fy39N9EUcQ9UfNrR5rAX41/Dj3GQmzncix6SP7cERJzFBgX5POLBEI
+        E5/TeiqTGdjVycSzhItoFCMc4R6Rb9VAC+AL4AvgaxN8hDvwYe6Re6fKFE71
+        GfBCJyqRgYCBgA/xTUREfAa97KpR9SHY0Xlh9bDoYSAgYc4DDisajYpAigX2
+        GQh4bEZWjw04NkniYKDs2DMJIaKIi45JOJjIyvYKhOvHXSDiQhPipe5Ke4u8
+        JhvN/s56GfmCORQkqMLmLBQ8FnBZKFFrIByY7Hz2z9DJwkNTWulbD8YiZhS2
+        tarxoPIft4PLuNdljaFV/eMYI5xxf2HMMSOu5Zh5BdmnwL2507P0LrQCNBQh
+        LHzy7FRXiV0vtMxkF74t7pNvu/Q2B/LV5Iuw5wXd6exDkErNSSUnPWPiMwru
+        pUxG6grszf5SHcQBO5K2GfyxrvhHzgqEPbJioKQNrGjSQo5iFEGfE0wDmerE
+        zLMG/EsRHFFM+hRisapHB8Bczyn5BMy3+XT20epi0T9NIE2DqoSwCPpc1pvv
+        YQG+k7Yos3EXsqRHaexr+3XgzYI3CFPkc2cPaWU2WZpYHEjz5StIHEPqM1V8
+        N5l9uNAG7Oisg+h3hKJWHaA1xT9uXjgB7ZUXRZVgZfI8EKNJYuCYMe4zZeZI
+        jawBp/LX0veUSbX0w50Ua3NpaW35j9unwZHohhkrkzIDOr4iTJsLLLyGaets
+        sV/hlUzPyl9kB/l2AraabycCPVZ2OBILn/Q4qjyUMOfaoIXI4QJ5zc99rtwT
+        4FgPJ7KL7Ql6tLfpys4c4LLY2JRDzj3DZfbxTAa6NGYhc/46hV7TxvRQWidH
+        BqYsdDbpIv2f9Si4ZHWfDpCpd08mEfMLmaBfmiQMQVG8LCiiNcKc6LSKXduX
+        hcqU7x2JYyoEjXvFl6Bg7olIEbHPBZyjan9Y54UPw3xsgxZyxAQl/heLB7Pf
+        U2k7mVBhPSLMPX06YKZe92HIK2a0LGcfA2KaEzGCR9jris9LlSQ6GxcmAzta
+        5l3kExHRbj7RmvIfeSAbIZ3tgPuDsYUK9GjOwiovO+ZeV33Mmc5yB49dabX0
+        /rcsDGLYo4ncB3XvgJ5aqxDo9d9ZjJU6DXO6TfpDMacR8ZkteFIqN9IGMp12
+        sbU/6hVrVvXnwJd6J+so8vp3oFXmiOuahXsQZgEzjaoawpYmf7anatzIKrP5
+        4lFi0rMugmdhj2Ze1nXtQJzamWLcZ1bQibJjPQ0OVKOogTHzqmj25fBN5T89
+        l9aqohPS9CjvcGWXDoipEUOFT1FzaoaO/c7DD5BpzELKCKUQev4jDJUYcKir
+        uYkuou1i0moq0Jri+0wM8OpJ9f79vy9c1fT3gQAA
+    http_version:
+  recorded_at: Fri, 23 Feb 2018 04:47:26 GMT
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?population%20?office%20?officeLabel%20?head%20?headLabel%20?legislature%20?legislatureLabel%20?legislature_applies_to_matches%20WHERE%0A%7B%0A%20%20?item%20wdt:P31/wdt:P279*%20wd:Q515%20%3B%20wdt:P17%20wd:Q155%20%3B%20wdt:P1082%20?population%20.%0A%20%20FILTER%20(?population%20%3E%20250000)%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P6%20?head%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1313%20?office%20%7D%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20?item%20wdt:P194%20?legislature%0A%20%20%20%20OPTIONAL%20%7B%20?legislature%20wdt:P1001%20?legislature_applies_to_jurisdiction%20%7D%0A%20%20%20%20BIND((BOUND(?legislature_applies_to_jurisdiction)%20%26%26%20?legislature_applies_to_jurisdiction%20=%20?item)%20AS%20?legislature_applies_to_matches)%0A%20%20%7D%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(?population)%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
+      Host:
+      - query.wikidata.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 23 Feb 2018 04:47:29 GMT
+      Content-Type:
+      - application/sparql-results+json
+      Content-Length:
+      - '1657'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.11.6
+      X-Served-By:
+      - wdqs2002
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=300
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept, Accept-Encoding
+      X-Varnish:
+      - 95331417, 264844173
+      Via:
+      - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
+      Age:
+      - '0'
+      X-Cache:
+      - cp2025 miss, cp2006 miss
+      X-Cache-Status:
+      - miss
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Set-Cookie:
+      - WMF-Last-Access-Global=23-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Tue,
+        27 Mar 2018 00:00:00 GMT
+      - WMF-Last-Access=23-Feb-2018;Path=/;HttpOnly;secure;Expires=Tue, 27 Mar 2018
+        00:00:00 GMT
+      X-Analytics:
+      - https=1;nocookies=1
+      X-Client-Ip:
+      - 125.255.45.164
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+    http_version:
+  recorded_at: Fri, 23 Feb 2018 04:47:29 GMT
+recorded_with: VCR 4.0.0
