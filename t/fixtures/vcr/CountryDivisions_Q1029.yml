@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?population%20?office%20?officeLabel%20?head%20?headLabel%20?legislature%20?legislatureLabel%20WHERE%0A%7B%0A%20%20?item%20wdt:P31/wdt:P279*%20wd:Q10864048%20%3B%20wdt:P17%20wd:Q1029%20.%0A%20%20FILTER%20NOT%20EXISTS%20%7B%20?item%20wdt:P576%20%5B%5D%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1082%20?population%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P6%20?head%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1313%20?office%20%7D%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20?item%20wdt:P194%20?legislature%0A%20%20%20%20MINUS%20%7B%20?legislature%20wdt:P576%20?legislatureEnd%20%7D%0A%20%20%7D%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(?population)%20?itemLabel%0A
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?population%20?office%20?officeLabel%20?head%20?headLabel%20?legislature%20?legislatureLabel%20?legislature_applies_to_matches%20WHERE%0A%7B%0A%20%20?item%20wdt:P31/wdt:P279*%20wd:Q10864048%20%3B%20wdt:P17%20wd:Q1029%20.%0A%20%20FILTER%20NOT%20EXISTS%20%7B%20?item%20wdt:P576%20%5B%5D%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1082%20?population%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P6%20?head%20%7D%0A%20%20OPTIONAL%20%7B%20?item%20wdt:P1313%20?office%20%7D%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20?item%20wdt:P194%20?legislature%0A%20%20%20%20MINUS%20%7B%20?legislature%20wdt:P576%20?legislatureEnd%20%7D%0A%20%20%20%20OPTIONAL%20%7B%20?legislature%20wdt:P1001%20?legislature_applies_to_jurisdiction%20%7D%0A%20%20%20%20BIND((BOUND(?legislature_applies_to_jurisdiction)%20%26%26%20?legislature_applies_to_jurisdiction%20=%20?item)%20AS%20?legislature_applies_to_matches)%0A%20%20%7D%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(?population)%20?itemLabel%0A
     body:
       encoding: US-ASCII
       string: ''
@@ -21,17 +21,17 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 21 Feb 2018 07:19:30 GMT
+      - Wed, 28 Feb 2018 04:47:01 GMT
       Content-Type:
       - application/sparql-results+json
       Content-Length:
-      - '356'
+      - '371'
       Connection:
       - keep-alive
       Server:
       - nginx/1.11.6
       X-Served-By:
-      - wdqs2002
+      - wdqs2003
       Access-Control-Allow-Origin:
       - "*"
       Cache-Control:
@@ -41,39 +41,40 @@ http_interactions:
       Vary:
       - Accept, Accept-Encoding
       X-Varnish:
-      - 212294626, 261340154
+      - 79497395, 75118711
       Via:
       - 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)
       Age:
       - '0'
       X-Cache:
-      - cp2012 miss, cp2006 miss
+      - cp2018 miss, cp2018 miss
       X-Cache-Status:
       - miss
       Strict-Transport-Security:
       - max-age=106384710; includeSubDomains; preload
       Set-Cookie:
-      - WMF-Last-Access-Global=21-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
-        25 Mar 2018 00:00:00 GMT
-      - WMF-Last-Access=21-Feb-2018;Path=/;HttpOnly;secure;Expires=Sun, 25 Mar 2018
+      - WMF-Last-Access-Global=28-Feb-2018;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        01 Apr 2018 00:00:00 GMT
+      - WMF-Last-Access=28-Feb-2018;Path=/;HttpOnly;secure;Expires=Sun, 01 Apr 2018
         00:00:00 GMT
       X-Analytics:
       - https=1;nocookies=1
       X-Client-Ip:
-      - 121.44.11.137
+      - 121.44.156.106
       Accept-Ranges:
       - bytes
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAA8WWUU+DMBDH3/cpmj6TMdkGbK+aGBM1Gn3S+HDIjV0sLYEy
-        3JZ9d8tANo2+tk/lf9z1/j8uod2PGONrhJSzJdsbYeQGyqqVr4yTxpx73XoL
-        CYpWFKqoBWhSslVqtaJ3PD0Nacdd+3UICsyoMsV1ib9kl8LejIeD17oqsaqF
-        rs6MJSRTkllvrguy3uSQdQzpbYFtiNclce8U34CouxdrrYul7zdNM27og1LQ
-        MFZl5qPUpLf+4ywM59OY96UH77xZb/VHx89cLAXI7Lg5yvOmgxlhiksQfxu6
-        hESxKxQZpIo9lGpD0nzW7/6jzoUF6CC0CH0NO3AJO4sswt7INeQJSHRFHAZB
-        tAgsEt+BpHdnA55Gi3AeW8Utaq2cTndmEfce8vYgcMq7sMlLUFUucePJhUXc
-        J7UCh9OdzKPY5t/5GTU6ne3UIuyLOYhwR/9Ot7uGjQ5fpk2OtB8KAAA=
+        H4sIAAAAAAAAA8WWUU+DMBDH3/cpGp7JmGyDba+aGBM1Gn3SmOUYN7hYWgJl
+        uC377paBbJr52j6V/3HX+/+4hHY/YMxJEWKHLdheCy03UJSNfGcOKcwct13v
+        IULeiFzmFQdFUjRKrte0wtNTn3bctVv7IMeESl1cFfhHXkpZQp5zwnKp5DID
+        tUpRG/vQLg9u47vAsuKqPLMekYhJJJ39Nsg6jD7rGFLbHJuQUxXkuKf4BnjV
+        vkiVyheeV9f1sKZPikHBUBaJh0KR2nrPkyCYjmdOV3pwz5u1ML87fmV8wUEk
+        x81RnDftzXBdXAC/bOgaIslukCcQS/ZUyA0J/eF/+g9aFwag/cAg9C3swCbs
+        JDQIeydSyCIQaIs48P1w7hskfgBBK2sDHofzYDoziptXSlqd7sQg7iNkzVFh
+        lXdukpegLG3izkZXBnFf5BosTnc0DWcm/86vqNDqbMcGYd/0QYQ7+ne67TVs
+        cPgGUXITeUEKAAA=
     http_version: 
-  recorded_at: Wed, 21 Feb 2018 07:19:31 GMT
+  recorded_at: Wed, 28 Feb 2018 04:47:01 GMT
 recorded_with: VCR 4.0.0

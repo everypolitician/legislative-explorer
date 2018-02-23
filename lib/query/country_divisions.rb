@@ -22,7 +22,7 @@ module Query
 
     def sparql
       @sparql ||= <<~SPARQL
-        SELECT DISTINCT ?item ?itemLabel ?population ?office ?officeLabel ?head ?headLabel ?legislature ?legislatureLabel WHERE
+        SELECT DISTINCT ?item ?itemLabel ?population ?office ?officeLabel ?head ?headLabel ?legislature ?legislatureLabel ?legislature_applies_to_matches WHERE
         {
           ?item wdt:P31/wdt:P279* wd:Q10864048 ; wdt:P17 wd:#{id} .
           FILTER NOT EXISTS { ?item wdt:P576 [] }
@@ -32,6 +32,8 @@ module Query
           OPTIONAL {
             ?item wdt:P194 ?legislature
             MINUS { ?legislature wdt:P576 ?legislatureEnd }
+            OPTIONAL { ?legislature wdt:P1001 ?legislature_applies_to_jurisdiction }
+            BIND((BOUND(?legislature_applies_to_jurisdiction) && ?legislature_applies_to_jurisdiction = ?item) AS ?legislature_applies_to_matches)
           }
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
@@ -43,10 +45,12 @@ module Query
       @res ||= Sparql.new(sparql).results
     end
 
-    LegislatureStruct = SelfAwareStruct.new(:me)
+    LegislatureStruct = SelfAwareStruct.new(:me, :applies_to_matches?)
     def legislatures
       division_results.group_by { |result| result[:item] }.map do |item, rows|
-        legislatures = rows.select { |row| row[:legislature] }.map { |row| LegislatureStruct.new(row[:legislature]) }.uniq.compact
+        legislatures = rows.select { |row| row[:legislature] }.map do |row|
+          LegislatureStruct.new(row[:legislature], (row[:legislature_applies_to_matches] == 'true'))
+        end.uniq.compact
         [item, legislatures]
       end.to_h
     end

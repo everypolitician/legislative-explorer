@@ -59,6 +59,24 @@ describe Query::CountryCities do
       it 'should have one legislature' do
         subject.legislatures.count.must_equal 1
       end
+
+      it 'should know the legislature has a matching P1001 statement' do
+        subject.legislatures.first.applies_to_matches?.must_equal true
+      end
+    end
+  end
+
+  describe 'Brazil (Q155)' do
+    around { |test| VCR.use_cassette('CountryCities Q155', &test) }
+
+    let(:cities) { Query::CountryCities.new(id: 'Q155') }
+
+    describe 'Salvador (Q36947)' do
+      subject { cities.data.find { |c| c.id == 'Q36947' } }
+
+      it 'should know the legislature is missing a P1001 statement' do
+        subject.legislatures.first.applies_to_matches?.must_equal false
+      end
     end
   end
 end
