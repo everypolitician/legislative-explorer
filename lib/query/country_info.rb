@@ -15,7 +15,7 @@ module Query
       CountryStruct.new(
         h[:country],
         extract_values(results, :population),
-        extract_values(results, :executive),
+        extract_values(results, :executive), # This is not currently used, should it be?
         extract_values(results, :head),
         extract_values(results, :office),
         extract_values(results, :legislature)
