@@ -49,4 +49,14 @@ describe Query::CountryInfo do
       subject.legislatures.map(&:id).wont_include 'Q16057514'
     end
   end
+
+  describe 'San Marino (Q238)' do
+    around { |test| VCR.use_cassette('CountryInfo Q238', &test) }
+
+    subject { Query::CountryInfo.new(id: 'Q238').data }
+
+    it 'should have two heads of government' do
+      subject.heads.count.must_equal 2
+    end
+  end
 end

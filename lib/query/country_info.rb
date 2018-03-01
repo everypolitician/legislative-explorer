@@ -16,7 +16,7 @@ module Query
         h[:country],
         [h[:population]],
         h[:executive],
-        [h[:head]],
+        results.map { |row| row[:head] }.uniq.compact,
         h[:office],
         legislatures
       )
