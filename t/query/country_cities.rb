@@ -21,7 +21,7 @@ describe Query::CountryCities do
       end
 
       it 'should know its head of government' do
-        subject.head.name.must_equal 'Taavi Aas'
+        subject.heads.first.name.must_equal 'Taavi Aas'
       end
 
       it 'should know its head of government office' do
@@ -70,6 +70,24 @@ describe Query::CountryCities do
 
       it 'should have one legislature' do
         subject.legislatures.count.must_equal 1
+      end
+    end
+  end
+
+  describe 'New Zealand (Q664)' do
+    around { |test| VCR.use_cassette('CountryCities Q664', &test) }
+
+    let(:cities) { Query::CountryCities.new(id: 'Q664').data }
+
+    describe 'Christchurch (Q79990)' do
+      subject { cities.find { |c| c.id == 'Q79990' } }
+
+      it 'should only be listed once' do
+        cities.select { |c| c.id == 'Q79990' }.count.must_equal 1
+      end
+
+      it 'should have two heads of government' do
+        subject.heads.count.must_equal 2
       end
     end
   end

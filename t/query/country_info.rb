@@ -18,7 +18,7 @@ describe Query::CountryInfo do
     end
 
     it 'should know its head of government' do
-      subject.head.name.must_equal 'Jüri Ratas'
+      subject.heads.first.name.must_equal 'Jüri Ratas'
     end
 
     it 'should know its head of government office' do

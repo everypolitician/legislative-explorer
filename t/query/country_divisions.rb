@@ -21,7 +21,7 @@ describe Query::CountryDivisions do
       end
 
       it 'should know its head of government' do
-        subject.head.name.must_equal 'Ülle Rajasalu'
+        subject.heads.first.name.must_equal 'Ülle Rajasalu'
       end
     end
   end
@@ -72,6 +72,24 @@ describe Query::CountryDivisions do
 
       it 'should have two population numbers listed' do
         subject.populations.count.must_equal 2
+      end
+    end
+  end
+
+  describe 'Russia (Q159)' do
+    around { |test| VCR.use_cassette('CountryDivisions Q159', &test) }
+
+    let(:divisions) { Query::CountryDivisions.new(id: 'Q159').data }
+
+    describe 'Jewish Autonomous Oblast (Q7730)' do
+      subject { divisions.find { |c| c.id == 'Q7730' } }
+
+      it 'should only be listed once' do
+        divisions.select { |c| c.id == 'Q7730' }.count.must_equal 1
+      end
+
+      it 'should have two heads of government' do
+        subject.heads.count.must_equal 2
       end
     end
   end

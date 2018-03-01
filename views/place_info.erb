@@ -2,8 +2,8 @@
   <a href="https://www.wikidata.org/wiki/<%= place.id %>"><%= place.name %></a> <%= show_population(place.populations) %>
   <ul>
     <li>Head of Government:
-      <% if place.head %>
-        <a href="https://www.wikidata.org/wiki/<%= place.head.id %>"><%= place.head.name %></a>
+      <% if place.heads.any? %>
+        <%= wikidata_links(place.heads) %>
       <% else %>
         <i>holder unknown</i>
       <% end %>
