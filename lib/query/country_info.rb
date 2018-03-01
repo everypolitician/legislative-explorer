@@ -11,9 +11,8 @@ module Query
     end
 
     def data
-      h = results.first
       CountryStruct.new(
-        h[:country],
+        results.first[:country],
         extract_values(results, :population),
         extract_values(results, :executive), # This is not currently used, should it be?
         extract_values(results, :head),
