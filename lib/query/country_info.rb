@@ -14,7 +14,7 @@ module Query
       h = results.first
       CountryStruct.new(
         h[:country],
-        [h[:population]],
+        results.map { |row| row[:population] }.uniq.compact,
         h[:executive],
         results.map { |row| row[:head] }.uniq.compact,
         h[:office],
