@@ -7,7 +7,6 @@ module HTMLHelper
 
   def show_population(populations)
     populations = [populations].flatten.map { |number| number.to_i.commify }.join(' <em>or</em> ')
-    populations = '<em>unknown</em>' if populations.empty?
-    "(pop. #{populations})"
+    "(pop. #{populations.empty? ? '<em>unknown</em>' : populations})"
   end
 end
