@@ -14,10 +14,10 @@ module Query
       division_results.group_by { |result| result[:item] }.map do |item, details|
         DivisionStruct.new(
           item,
-          details.map { |d| d[:population] }.uniq.compact,
+          details.map { |row| row[:population] }.uniq.compact,
           details.first[:office],
-          details.map { |d| d[:head] }.uniq.compact,
-          details.map { |d| d[:legislature] }.uniq.compact
+          details.map { |row| row[:head] }.uniq.compact,
+          details.map { |row| row[:legislature] }.uniq.compact
         )
       end
     end
