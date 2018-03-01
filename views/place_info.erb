@@ -8,8 +8,8 @@
         <i>holder unknown</i>
       <% end %>
 
-      <% if place.office %>
-        (<a href="https://www.wikidata.org/wiki/<%= place.office.id %>"><%= place.office.name %></a>)
+      <% if place.offices.any? %>
+        (<%= wikidata_links(place.offices) %>)
       <% else %>
         (<i>office unknown</i>)
       <% end %>

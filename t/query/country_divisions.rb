@@ -93,6 +93,24 @@ describe Query::CountryDivisions do
       end
     end
   end
+
+  describe 'United Kingdom (Q145)' do
+    around { |test| VCR.use_cassette('CountryDivisions Q145', &test) }
+
+    let(:divisions) { Query::CountryDivisions.new(id: 'Q145').data }
+
+    describe 'Northern Ireland (Q26)' do
+      subject { divisions.find { |c| c.id == 'Q26' } }
+
+      it 'should only be listed once' do
+        divisions.select { |c| c.id == 'Q26' }.count.must_equal 1
+      end
+
+      it 'should have two offices held by head of government' do
+        subject.offices.count.must_equal 2
+      end
+    end
+  end
 end
 
 describe Query::CountryDivisions do

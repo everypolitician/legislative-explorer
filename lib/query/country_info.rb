@@ -2,7 +2,7 @@
 
 require_relative '../sparql'
 
-CountryStruct = SelfAwareStruct.new(:me, :populations, :executive, :heads, :office, :legislatures)
+CountryStruct = SelfAwareStruct.new(:me, :populations, :executive, :heads, :offices, :legislatures)
 
 module Query
   class CountryInfo
@@ -17,7 +17,7 @@ module Query
         results.map { |row| row[:population] }.uniq.compact,
         h[:executive],
         results.map { |row| row[:head] }.uniq.compact,
-        h[:office],
+        results.map { |row| row[:office] }.uniq.compact,
         legislatures
       )
     end

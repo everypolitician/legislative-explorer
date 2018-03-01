@@ -25,7 +25,7 @@ describe Query::CountryCities do
       end
 
       it 'should know its head of government office' do
-        subject.office.name.must_equal 'mayor of Tallinn'
+        subject.offices.first.name.must_equal 'mayor of Tallinn'
       end
     end
   end

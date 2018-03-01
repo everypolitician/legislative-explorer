@@ -22,7 +22,7 @@ describe Query::CountryInfo do
     end
 
     it 'should know its head of government office' do
-      subject.office.name.must_equal 'Prime Minister of Estonia'
+      subject.offices.first.name.must_equal 'Prime Minister of Estonia'
     end
 
     it 'should know its legislature' do
