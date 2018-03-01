@@ -14,11 +14,11 @@ module Query
       h = results.first
       CountryStruct.new(
         h[:country],
-        results.map { |row| row[:population] }.uniq.compact,
+        extract_values(results, :population),
         h[:executive],
-        results.map { |row| row[:head] }.uniq.compact,
-        results.map { |row| row[:office] }.uniq.compact,
-        results.map { |row| row[:legislature] }.uniq.compact
+        extract_values(results, :head),
+        extract_values(results, :office),
+        extract_values(results, :legislature)
       )
     end
 
@@ -46,6 +46,10 @@ module Query
 
     def results
       @results ||= Sparql.new(sparql).results
+    end
+
+    def extract_values(rows, field)
+      rows.map { |row| row[field] }.uniq.compact
     end
   end
 end

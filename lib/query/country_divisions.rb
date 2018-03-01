@@ -14,10 +14,10 @@ module Query
       division_results.group_by { |result| result[:item] }.map do |item, details|
         DivisionStruct.new(
           item,
-          details.map { |row| row[:population] }.uniq.compact,
-          details.map { |row| row[:office] }.uniq.compact,
-          details.map { |row| row[:head] }.uniq.compact,
-          details.map { |row| row[:legislature] }.uniq.compact
+          extract_values(details, :population),
+          extract_values(details, :office),
+          extract_values(details, :head),
+          extract_values(details, :legislature)
         )
       end
     end
@@ -47,6 +47,10 @@ module Query
 
     def division_results
       @res ||= Sparql.new(sparql).results
+    end
+
+    def extract_values(rows, field)
+      rows.map { |row| row[field] }.uniq.compact
     end
   end
 end
