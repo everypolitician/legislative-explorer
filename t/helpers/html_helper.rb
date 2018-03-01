@@ -20,5 +20,9 @@ describe HTMLHelper do
     it 'should show multiple population' do
       subject.new.show_population(%w[123 456]).must_equal '(pop. 123 <em>or</em> 456)'
     end
+
+    it 'should show an unknown population' do
+      subject.new.show_population([]).must_equal '(pop. <em>unknown</em>)'
+    end
   end
 end

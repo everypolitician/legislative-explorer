@@ -8,6 +8,7 @@ module HTMLHelper
   def show_population(populations)
     populations = [populations] unless populations.is_a?(Array)
     populations = populations.map { |number| number.to_i.commify }.join(' <em>or</em> ')
+    populations = '<em>unknown</em>' if populations.empty?
     "(pop. #{populations})"
   end
 end
