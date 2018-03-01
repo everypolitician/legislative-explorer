@@ -14,7 +14,7 @@ describe Query::CountryInfo do
     end
 
     it 'should know its population' do
-      subject.population.must_equal '1315635'
+      subject.populations.first.must_equal '1315635'
     end
 
     it 'should know its head of government' do

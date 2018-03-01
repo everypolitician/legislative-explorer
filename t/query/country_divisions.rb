@@ -17,7 +17,7 @@ describe Query::CountryDivisions do
       end
 
       it 'should know its population' do
-        subject.population.must_equal '575601'
+        subject.populations.first.must_equal '575601'
       end
 
       it 'should know its head of government' do
@@ -54,6 +54,24 @@ describe Query::CountryDivisions do
 
       it 'should not list an abolished legislature' do
         subject.legislatures.map(&:id).wont_include 'Q7051064'
+      end
+    end
+  end
+
+  describe 'Latvia (Q211)' do
+    around { |test| VCR.use_cassette('CountryDivisions Q211', &test) }
+
+    let(:divisions) { Query::CountryDivisions.new(id: 'Q211').data }
+
+    describe 'Aglona Municipality (Q2045300)' do
+      subject { divisions.find { |c| c.id == 'Q2045300' } }
+
+      it 'should only be listed once' do
+        divisions.select { |c| c.id == 'Q2045300' }.count.must_equal 1
+      end
+
+      it 'should have two population numbers listed' do
+        subject.populations.count.must_equal 2
       end
     end
   end

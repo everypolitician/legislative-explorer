@@ -17,7 +17,7 @@ describe Query::CountryCities do
       end
 
       it 'should know its population' do
-        subject.population.must_equal '446055'
+        subject.populations.first.must_equal '446055'
       end
 
       it 'should know its head of government' do
@@ -44,6 +44,18 @@ describe Query::CountryCities do
 
       it 'should not list an abolished legislature' do
         subject.legislatures.map(&:id).wont_include 'Q6682043'
+      end
+    end
+
+    describe 'Louisville (Q43668)' do
+      subject { cities.find { |c| c.id == 'Q43668' } }
+
+      it 'should only be listed once' do
+        cities.select { |c| c.id == 'Q43668' }.count.must_equal 1
+      end
+
+      it 'should have two population numbers listed' do
+        subject.populations.count.must_equal 2
       end
     end
   end
