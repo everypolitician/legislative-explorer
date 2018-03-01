@@ -18,7 +18,7 @@ module Query
         h[:executive],
         results.map { |row| row[:head] }.uniq.compact,
         results.map { |row| row[:office] }.uniq.compact,
-        legislatures
+        results.map { |row| row[:legislature] }.uniq.compact
       )
     end
 
@@ -46,10 +46,6 @@ module Query
 
     def results
       @results ||= Sparql.new(sparql).results
-    end
-
-    def legislatures
-      results.map { |i| i[:legislature] }.compact.uniq
     end
   end
 end
