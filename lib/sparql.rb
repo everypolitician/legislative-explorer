@@ -10,12 +10,8 @@ class Sparql
     @query = query
   end
 
-  # rewrite foo+fooLabel pairs as foo: { id: X, name: Y }
   def results
-    ungrouped_results.map do |row|
-      labelled = row.keys.select { |field| row.key?("#{field}Label".to_sym) }
-      labelled.map { |field| [field, LabelledItem.new(row.delete(field), row.delete("#{field}Label".to_sym))] }.to_h.merge(row)
-    end
+    bindings.map { |row| Row.new(row).to_h }
   end
 
   private
@@ -38,10 +34,6 @@ class Sparql
     raw_json[:results][:bindings]
   end
 
-  def ungrouped_results
-    bindings.map { |row| Row.new(row).to_h }
-  end
-
   # Rows are returned from the API in the format:
   # {:item=>{:type=>"uri", :value=>"http://www.wikidata.org/entity/Q222"},
   #  :itemLabel=>{:"xml:lang"=>"en", :type=>"literal", :value=>"Albania"}}
@@ -50,14 +42,31 @@ class Sparql
       @data = hash
     end
 
+    # combine all foo + fooLabel column pairs into `LabelledItem`s
     def to_h
-      # TODO: we shouldn't be always casting Datum to to_s
-      data.map { |field, value| [field, Datum.new(value).to_s] }.to_h
+      cache = flattened.dup
+      paired_column_names.map do |field|
+        [field, LabelledItem.new(cache.delete(field.to_sym), cache.delete("#{field}Label".to_sym))]
+      end.to_h.merge(cache)
     end
 
     private
 
     attr_reader :data
+
+    def flattened
+      @flattened ||= data.map { |field, value| [field, Datum.new(value).to_s] }.to_h
+    end
+
+    def column_names
+      flattened.keys.map(&:to_s)
+    end
+
+    # all columns for which there's also a 'columnLabel' (usually from
+    # the label service)
+    def paired_column_names
+      column_names.select { |column| column_names.include? "#{column}Label" }.map(&:to_sym)
+    end
   end
 
   # https://www.wikidata.org/wiki/Special:ListDatatypes
