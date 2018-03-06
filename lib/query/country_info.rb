@@ -11,8 +11,8 @@ module Query
     end
 
     def data
-      h = results.first
-      CountryStruct.new(*h.values_at(:country, :population, :executive, :head, :office), legislatures)
+      result = results.first
+      CountryStruct.new(*result.values_at(:country, :population, :executive, :head, :office), legislatures)
     end
 
     private
@@ -42,7 +42,7 @@ module Query
     end
 
     def legislatures
-      results.map { |i| i[:legislature] }.compact.uniq
+      results.map { |result| result[:legislature] }.compact.uniq
     end
   end
 end

@@ -11,8 +11,8 @@ module Query
     end
 
     def data
-      division_results.map do |r|
-        DivisionStruct.new(*r.values_at(:item, :population, :office, :head), legislatures(r[:item]))
+      division_results.map do |row|
+        DivisionStruct.new(*row.values_at(:item, :population, :office, :head), legislatures(row[:item]))
       end.uniq
     end
 
@@ -44,7 +44,7 @@ module Query
     end
 
     def legislatures(place_id)
-      division_results.select { |r| r[:item] == place_id }.map { |i| i[:legislature] }.compact.uniq
+      division_results.select { |row| row[:item] == place_id }.map { |row| row[:legislature] }.compact.uniq
     end
   end
 end

@@ -12,9 +12,9 @@ class Sparql
 
   # rewrite foo+fooLabel pairs as foo: { id: X, name: Y }
   def results
-    ungrouped_results.map do |r|
-      labelled = r.keys.select { |field| r.key?("#{field}Label".to_sym) }
-      labelled.map { |field| [field, LabelledItem.new(r.delete(field), r.delete("#{field}Label".to_sym))] }.to_h.merge(r)
+    ungrouped_results.map do |row|
+      labelled = row.keys.select { |field| row.key?("#{field}Label".to_sym) }
+      labelled.map { |field| [field, LabelledItem.new(row.delete(field), row.delete("#{field}Label".to_sym))] }.to_h.merge(row)
     end
   end
 

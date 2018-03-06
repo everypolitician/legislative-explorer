@@ -5,7 +5,7 @@ require_relative '../sparql'
 module Query
   class CountryList
     def data
-      Sparql.new(sparql).results.map { |r| r[:item] }
+      Sparql.new(sparql).results.map { |row| row[:item] }
     end
 
     private
