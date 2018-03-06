@@ -24,4 +24,4 @@ end
 require 'bundler/audit/task'
 Bundler::Audit::Task.new
 
-task default: ['test', 'rubocop', 'bundle:audit']
+task default: ['test', 'rubocop', 'reek', 'bundle:audit']
