@@ -15,7 +15,7 @@ end
 RuboCop::RakeTask.new
 
 Reek::Rake::Task.new do |t|
-  t.source_files = FileList['**/*.rb']
+  t.source_files = FileList['**/*.rb'].exclude('vendor/**/*.rb')
   t.verbose = false
   t.fail_on_error = true
 end
