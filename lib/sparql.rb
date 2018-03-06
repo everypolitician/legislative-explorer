@@ -26,8 +26,8 @@ class Sparql
 
   def result
     @result ||= RestClient.get WIKIDATA_SPARQL_URL, params: { query: query, format: 'json' }
-  rescue RestClient::Exception => e
-    abort "Wikidata query #{query.inspect} failed: #{e.message}"
+  rescue RestClient::Exception => error
+    abort "Wikidata query #{query.inspect} failed: #{error.message}"
   end
 
   def raw_json
