@@ -27,7 +27,7 @@ class Sparql
   end
 
   def raw_json
-    @json ||= JSON.parse(result, symbolize_names: true)
+    @raw_json ||= JSON.parse(result, symbolize_names: true)
   end
 
   def bindings
