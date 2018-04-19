@@ -40,7 +40,7 @@ module Query
     end
 
     def division_results
-      @res ||= Sparql.new(sparql).results
+      @division_results ||= Sparql.new(sparql).results
     end
 
     def legislatures(place_id)
