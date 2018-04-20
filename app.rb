@@ -16,7 +16,6 @@ class Integer
 end
 
 Dotenv.load
-helpers HTMLHelper
 
 set :erb, trim: '-'
 
