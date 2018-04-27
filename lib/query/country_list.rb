@@ -13,10 +13,16 @@ module Query
     def sparql
       @sparql ||= <<~SPARQL
         SELECT ?item ?itemLabel WHERE {
-          ?item p:P31 ?statement .
-          ?statement ps:P31 wd:Q160016 .
-          MINUS { ?statement pq:P582 ?end }      # no longer a country
-          MINUS { ?item wdt:P1552 wd:Q47185282 } # not free
+          ?item p:P31 ?instanceOfStatement .
+          ?instanceOfStatement ps:P31 wd:Q6256 .
+          MINUS { ?instanceOfStatement pq:P582 ?end }  # no longer a country
+
+          ?item p:P463 ?memberOfStatement .
+          ?memberOfStatement ps:P463 wd:Q1065 .
+          MINUS { ?memberOfStatement pq:P582 ?end }    # no longer a member of the UN
+
+          MINUS { ?item wdt:P1552 wd:Q47185282 }       # not free
+
           SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
         ORDER BY ?itemLabel
