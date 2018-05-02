@@ -23,6 +23,14 @@ describe 'Basic web requests' do
     it 'links to the Estonia page' do
       subject.css('a/@href').map(&:text).must_include '/country/Q191'
     end
+
+    it 'is not claiming to be EveryPolitician' do
+      response.body.wont_match(/EveryPolitician/)
+    end
+
+    it 'claims to be the Legislative Explorer' do
+      subject.css('#wrapper nav.site-nav a').map(&:text).must_include 'Legislative Explorer'
+    end
   end
 
   describe 'country page' do

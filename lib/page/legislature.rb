@@ -11,7 +11,7 @@ module Page
     end
 
     def title
-      "EveryPolitician: #{legislature.name}"
+      "Legislative Explorer: #{legislature.name}"
     end
 
     def country

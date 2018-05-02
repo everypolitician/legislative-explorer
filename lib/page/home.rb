@@ -9,7 +9,7 @@ module Page
     attr_reader :countries
 
     def title
-      "EveryPolitician: Political data for #{countries.count} countries"
+      "Legislative Explorer: Political data for #{countries.count} countries"
     end
   end
 end
