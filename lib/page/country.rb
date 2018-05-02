@@ -11,7 +11,7 @@ module Page
     attr_reader :country, :divisions, :cities
 
     def title
-      "EveryPolitician: #{country.name}"
+      "Legislative Explorer: #{country.name}"
     end
   end
 end

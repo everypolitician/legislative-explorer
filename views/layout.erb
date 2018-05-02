@@ -27,14 +27,14 @@
     <script src="/javascript/Chart.min.js"></script>
     <script src="/javascript/blazy.min.js"></script>
     <script src="/javascript/main.js"></script>
-    <title><%= @page.title rescue "EveryPolitician" %></title>
+    <title><%= @page.title rescue "Legislative Explorer" %></title>
 </head>
 <body>
     <div id="wrapper">
 
         <nav class="site-nav <% if @country %>site-nav--country<% end %>">
             <div class="container">
-                <a href="/" class="site-nav__logo">EveryPolitician</a>
+                <a href="/" site-nav__menu">Legislative Explorer</a>
                 <ul class="site-nav__menu">
                     <li><a href="/countries.html">Data</a></li>
                 </ul>
